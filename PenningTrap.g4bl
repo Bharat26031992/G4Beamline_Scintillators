@@ -1,9 +1,9 @@
 # Physics configuration for the simulation
 physics QGSP_BERT
 
-#g4ui when=4 "/vis/viewer/set/style wireframe"
+g4ui when=4 "/vis/viewer/set/style wireframe"
 
-g4ui when=4 "/vis/viewer/addCutawayPlane"
+#g4ui when=4 "/vis/viewer/addCutawayPlane"
 
 param M=938.272 KE=0.1 # beam in MeV
 param P=sqrt(($M+$KE)*($M+$KE)-$M*$M)  # Calculate the momentum.
