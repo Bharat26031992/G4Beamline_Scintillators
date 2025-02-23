@@ -1,0 +1,521 @@
+# Physics configuration for the simulation
+physics QGSP_BERT
+
+#g4ui when=4 "/vis/viewer/set/style wireframe"
+
+g4ui when=4 "/vis/viewer/addCutawayPlane"
+
+param M=938.272 KE=0.1 # beam in MeV
+param P=sqrt(($M+$KE)*($M+$KE)-$M*$M)  # Calculate the momentum.
+param -unset p=$P/1000 #convert to GeV/c
+param -unset Charge=-1
+param -unset brel=$p/($KE+$M)
+param -unset v=$brel*2.99792458E8
+param -unset psi=10*$p/0.299792458   
+param -unset K_Coefficient=1*$Charge*$psi          # commented out if already in T/m
+param -unset Eg_Coeficient=1*$K_Coefficient*$v/1E6   # commented out if already in MV/m
+param sigmabeam=2.5
+param deltaOneStep=0.01
+param deltaChord=1
+param histoFile=AEgIS
+param zTolerance=2
+param minStep=0.01
+
+#######Geometry test checks################
+geometry nPoints=100 visual=0 tolerance=5 ##Here the tolerance is set to 5mm to avoid the error showing between two scintillors , although this does not effect any results
+
+
+# the beam is nominally headed in the +Z direction
+beam gaussian particle=anti_proton nEvents=100 beamZ=-5 \
+	sigmaX=$sigmabeam sigmaXp=9.5448e-04 sigmaY=$sigmabeam sigmaYp=3.6478e-04 meanMomentum=$P  \
+	 sigmaP=0.01 meanT=0.0 sigmaT=0.0
+
+# a reference particle
+reference particle=anti_proton referenceMomentum=$P
+
+
+## Degrader ParyleneN foil at the entrance##############
+##Definition taken from AEgIS 2021 report at https://cds.cern.ch/record/2799304/files/SPSC-SR-303.pdf
+
+material ParyleneN C,0.857 H,0.143 density=1.1 
+material Aluminum Z=13 A=26.982 density=2.7 
+virtualdetector ParyleneN_Foil material=ParyleneN innerRadius=0 radius=15.5 length=0.0002 color=1,1,1 format=ASCII file=ParyleneN50keV.txt
+cylinder Aluminum_Coating material=Aluminum innerRadius=0 outerRadius=15.5 length=0.00001 color=1,0.647,0,1
+place ParyleneN_Foil z=-1
+place Aluminum_Coating z=-1.00021
+
+
+## Degrader Gold foil at the entrance Optional##############
+#material Gold Z=79 A=196.76 density=19.32
+#cylinder Gold material=Gold innerRadius=0 outerRadius=15.5 length=0.0002 color=1,1,1,
+#place Gold z=-1
+###################### C electrode Group ##############################################################
+
+cylinder C0  material=Au innerRadius=15.0 outerRadius=15.5 length=13.5 color=0.5,0.5,0.5
+place C0 z=0+(13.5/2) 
+
+
+cylinder HV1  material=Au innerRadius=15.0 outerRadius=15.5 length=40 color=0,0.5,0.5
+place HV1 z=23.5+(40.0/2) 
+
+cylinder C1  material=Au innerRadius=15.0 outerRadius=15.5 length=26.5 color=0.5,0.5,0.5
+place C1  z=73.5+(26.5/2) 
+
+cylinder C2  material=Au innerRadius=15.0 outerRadius=15.5 length=29 color=0.5,0.5,0.5
+place C1  z=101+(29/2) 
+
+cylinder C3  material=Au innerRadius=15.0 outerRadius=15.5 length=29 color=0.5,0.5,0.5
+place C3  z=131+(29/2) 
+
+cylinder C4  material=Au innerRadius=15.0 outerRadius=15.5 length=29 color=0.5,0.5,0.5
+place C4  z=161+(29/2) 
+
+cylinder C5  material=Au innerRadius=15.0 outerRadius=15.5 length=29 color=0.5,0.5,0.5
+place C5  z=191+(29/2) 
+
+cylinder C6  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0.5,0.5,0.5
+place C6  z=221+(12.5/2) 
+
+cylinder C7  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0.5,0.5,0.5
+place C7  z=234.5+(12.5/2) 
+
+cylinder C8  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0.5,0.5,0.5
+place C8  z=248+(12.5/2) 
+
+cylinder C9  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0.5,0.5,0.5
+place C9  z=261+(12.5/2) 
+
+cylinder C10  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0.5,0.5,0.5
+place C10  z=275+(12.5/2) 
+
+cylinder C11  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0.5,0.5,0.5
+place C11  z=288.5+(12.5/2) 
+
+cylinder C12  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0.5,0.5,0.5
+place C12  z=302+(12.5/2) 
+
+cylinder C13  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0.5,0.5,0.5
+place C13  z=315.5+(12.5/2) 
+
+cylinder C14  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0.5,0.5,0.5
+place C14  z=329+(12.5/2) 
+
+cylinder C15  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0.5,0.5,0.5
+place C15  z=342.5+(12.5/2) 
+
+cylinder C16  material=Au innerRadius=15.0 outerRadius=15.5 length=29 color=0.5,0.5,0.5
+place C16  z=356+(29/2) 
+
+cylinder C17  material=Au innerRadius=15.0 outerRadius=15.5 length=29 color=0.5,0.5,0.5
+place C17  z=386+(29/2) 
+
+cylinder C18  material=Au innerRadius=15.0 outerRadius=15.5 length=29 color=0.5,0.5,0.5
+place C18  z=416+(29/2) 
+
+cylinder C19  material=Au innerRadius=15.0 outerRadius=15.5 length=27.5 color=0.5,0.5,0.5
+place C19  z=446+(27.5/2) 
+
+cylinder HV2  material=Au innerRadius=15.0 outerRadius=15.5 length=40 color=0,0.5,0.5
+place HV2  z=483.5+(40/2) 
+
+###################### P electrode Group ##############################################################
+
+cylinder P1  material=Au innerRadius=15.0 outerRadius=15.5 length=23 color=0,1,0.5
+place P1  z=533.5+(23/2) 
+
+cylinder P2  material=Au innerRadius=15.0 outerRadius=15.5 length=29 color=0,1,0.5
+place P2  z=557.5+(29/2) 
+
+cylinder P3  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0,1,0.5
+place P3  z=587.5+(12.5/2) 
+
+cylinder P4  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0,1,0.5
+place P4  z=601+(12.5/2) 
+
+cylinder P5  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0,1,0.5
+place P5  z=614.5+(12.5/2) 
+
+cylinder P6  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0,1,0.5
+place P6  z=628+(12.5/2) 
+
+cylinder P7  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0,1,0.5
+place P7  z=641.5+(12.5/2) 
+
+cylinder P8  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0,1,0.5
+place P8  z=655+(12.5/2) 
+
+cylinder P9  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0,1,0.5
+place P9  z=668.5+(12.5/2) 
+
+cylinder P10  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0,1,0.5
+place P10  z=682+(12.5/2) 
+
+cylinder P11  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0,1,0.5
+place P11  z=695.5+(12.5/2) 
+
+cylinder P12  material=Au innerRadius=15.0 outerRadius=15.5 length=12.5 color=0,1,0.5
+place P12  z=709+(12.5/2) 
+
+cylinder P13  material=Au innerRadius=15.0 outerRadius=15.5 length=29 color=0,1,0.5
+place P13  z=722.5+(29/2) 
+
+cylinder P14  material=Au innerRadius=15.0 outerRadius=15.5 length=24 color=0,1,0.5
+place P14  z=752.5+(24/2) 
+
+cylinder HV3 material=Au innerRadius=15.0 outerRadius=15.5 length=40 color=0,0.5,0.5
+place HV3 z=786.5+(40/2) 
+
+###################### T electrode Group ##############################################################
+
+cylinder T1 material=Au innerRadius=15.0 outerRadius=15.5 length=26.5 color=1,1,1
+place T1 z=836.5+(26.5/2) 
+
+cylinder T2 material=Au innerRadius=15.0 outerRadius=15.5 length=39 color=1,1,1
+place T2 z=864+(39/2) 
+
+cylinder T3 material=Au innerRadius=15.0 outerRadius=15.5 length=39 color=1,1,1
+place T3 z=904+(39/2) 
+
+cylinder T4 material=Au innerRadius=15.0 outerRadius=15.5 length=39 color=1,1,1
+place T4 z=944+(39/2) 
+
+cylinder T5 material=Au innerRadius=15.0 outerRadius=15.5 length=39 color=1,1,1
+place T5 z=984+(39/2) 
+
+cylinder T6 material=Au innerRadius=15.0 outerRadius=15.5 length=41 color=1,1,1
+place T6 z=1024+(41/2) 
+
+###################### B electrode Group ##############################################################
+
+##Here is the actual centre of the AEgIS cordinate system.i.e the centre point between T6 and B0 electrode at z=1068
+
+cylinder B0 material=Au innerRadius=15.0 outerRadius=15.5 length=62 color=1,0,0
+place B0 z=1071.8+(62/2) #This is the Rotating wall electrode
+
+cylinder B1 material=Au innerRadius=15.0 outerRadius=15.5 length=42 color=1,1,1
+place B1 z=1134.75+(42/2) 
+
+cylinder B2 material=Au innerRadius=15.0 outerRadius=15.5 length=42 color=1,1,1
+place B2 z=1177.75+(42/2) 
+
+cylinder B3 material=Au innerRadius=15.0 outerRadius=15.5 length=42 color=1,1,1
+place B3 z=1220.75+(42/2) 
+
+cylinder B4 material=Au innerRadius=15.0 outerRadius=15.5 length=42 color=1,1,1
+place B4 z=1263.75+(42/2) 
+
+cylinder B5 material=Au innerRadius=15.0 outerRadius=15.5 length=42 color=1,1,1
+place B5 z=1306.75+(42/2) 
+
+cylinder B6 material=Au innerRadius=15.0 outerRadius=15.5 length=42 color=1,1,1
+place B6 z=1349.75+(42/2) 
+
+cylinder B7 material=Au innerRadius=15.0 outerRadius=15.5 length=42 color=1,1,1
+place B7 z=1392.75+(42/2) 
+
+cylinder B8 material=Au innerRadius=15.0 outerRadius=15.5 length=15 color=1,1,1
+place B8 z=1435.75+(15/2) 
+
+cylinder B9 material=Au innerRadius=15.0 outerRadius=15.5 length=15 color=1,1,1
+place B9 z=1451.75+(15/2) 
+
+cylinder B10 material=Au innerRadius=15.0 outerRadius=15.5 length=15 color=1,1,1
+place B10 z=1467.75+(15/2) 
+
+cylinder HV4 material=Au innerRadius=15.0 outerRadius=15.5 length=15 color=0,0.5,0.5
+place HV4 z=1483.75+(15/2) 
+
+cylinder HV5 material=Au innerRadius=15.0 outerRadius=15.5 length=15 color=0,0.5,0.5
+place HV5 z=1500.75+(15/2) 
+
+cylinder HV6 material=Au innerRadius=15.0 outerRadius=15.5 length=15 color=0,0.5,0.5
+place HV6 z=1517.75+(15/2) 
+
+
+###################### A electrode Group ##############################################################
+
+cylinder A8 material=Au innerRadius=15.0 outerRadius=15.5 length=15 color=0,0,1
+place A8 z=1533.75+(15/2) 
+
+cylinder A7 material=Au innerRadius=15.0 outerRadius=15.5 length=15 color=0,0,1
+place A7 z=1549.75+(15/2) 
+
+cylinder A6 material=Au innerRadius=15.0 outerRadius=15.5 length=15 color=0,0,1
+place A6 z=1565.75+(15/2) 
+
+cylinder A5 material=Au innerRadius=15.0 outerRadius=15.5 length=15 color=0,0,1
+place A5 z=1581.75+(15/2) 
+
+cylinder A4 material=Au innerRadius=15.0 outerRadius=15.5 length=7.5 color=0,0,1
+place A4 z=1597.75+(7.5/2) 
+
+cylinder A3 material=Au innerRadius=15.0 outerRadius=15.5 length=7.5 color=0,0,1
+place A3 z=1606.75+(7.5/2) 
+
+cylinder A2 material=Au innerRadius=15.0 outerRadius=15.5 length=7.5 color=0,0,1
+place A2 z=1614.75+(7.5/2) 
+
+cylinder A1 material=Au innerRadius=15.0 outerRadius=15.5 length=7.5 color=0,0,1
+place A1 z=1623.75+(7.5/2) 
+
+cylinder A0 material=Au innerRadius=15.0 outerRadius=15.5 length=12 color=0,0,1
+place A0 z=1636.75+(12/2) 
+
+label text="A0" 0,0,1636.75+(12/2)+10
+
+###################Defining interaction volume of a particular gas#############################
+
+#param histoFile=Ar
+#output $histoFile
+
+#material Ar Z=18 A=39.95 density=2.14e-14 
+
+#cylinder Bg outerRadius=14 length=3000 material=Ar color=1,1,1,0.1 
+#place Bg z=1071 
+
+
+###################### Solenoid Magnets definition ##############################################################
+
+# display magnetic field lines
+#fieldlines exit=0  center=0,0,0 nLines=100
+
+#################  Definition of 1T main solenoid coil ##################################################
+coil Coil12 innerRadius=125 outerRadius=137 length=1300 material=Nb nSheets=1000
+solenoid Main1T coil=Coil12 current=68 color=1,0,0,0.3  ## Current density is matched to produce 1T axial field slightly lower than actual value
+#As G4beamline doesnt account for turns
+place Main1T z=2298.75-500.34 
+label text="1T" 0,137,2298.75-500.34-1300/2 
+
+## The location of the starting point of 1T Solenoid magnet is calculated from the CST geoemtry
+#The current should be converted to current density in A/mm2 the diameter
+#The solenoids are wound with enamel-insulated rectangular
+#NbTi wire with dimension of 1.25 x 0.8 mm onto a 1.3 m long
+#bobbin of fiberglass reinforced epoxy. For Main5T the current density is 85/1.25*0.8= 85 A/mm2
+#Ref:https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6109333&tag=1
+
+################# Definition of 5T main solenoid coil   ##################################################
+coil Coil11 material=Nb innerRadius=90 outerRadius=120 length=1300 material=Nb nSheets=1000
+solenoid Main5T coil=Coil11 current=134.4 color=1,0,0,0.3  ## Current density is matched to produce 5T axial field slightly lower than actual value
+#As G4beamline doesnt account for turns
+place Main5T z=339.4
+label text="5T" 0,120,339.4+1300/2
+
+#The current should be converted to current density in A/mm2 . I=168A
+#The solenoids are wound with enamel-insulated rectangular
+#NbTi wire with dimension of 1.25 x 0.8 mm onto a 1.3 m long
+#bobbin of fiberglass reinforced epoxy. For Main5T the current density is 168/1.25*0.8= 168 A/mm2
+
+printfield field=Bz layout=zx drow=50 nrow=100 dcol=1 ncol=1 x=0 y=0 z=-2000
+
+
+####################Corrector Coils for 5T Solenoid####################################################################
+
+coil Coil1 material=Nb innerRadius=155 outerRadius=165.2 length=100 material=Nb
+solenoid Corr1 coil=Coil1 current=11.86  color=1,0,0,0.3 
+place Corr1 z=1068-329-50
+# 1068 is the origin and then shift left second dimension is the front edge distance of solenoid and
+#last dimension is its half length in mm
+
+coil Coil2 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr2 coil=Coil2 current=5  color=1,0,0,0.3 
+place Corr2 z=1068-479-20  
+
+coil Coil3 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr3 coil=Coil3 current=2.94  color=1,0,0,0.3 
+place Corr3 z=1068-559-20  
+
+coil Coil4 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr4 coil=Coil4 current=0.63  color=1,0,0,0.3 
+place Corr4 z=1068-639-20  
+
+coil Coil5 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr5 coil=Coil5 current=0  color=1,0,0,0.3 
+place Corr5 z=1068-719-20  
+
+coil Coil6 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr6 coil=Coil6 current=0  color=1,0,0,0.3 
+place Corr6 z=1068-799-20  
+
+coil Coil7 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr7 coil=Coil7 current=0  color=1,0,0,0.3 
+place Corr7 z=1068-879-20 
+
+coil Coil8 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr8 coil=Coil8 current=2.2  color=1,0,0,0.3 
+place Corr8 z=1068-959-20   
+
+coil Coil9 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr9 coil=Coil9 current=0  color=1,0,0,0.3 
+place Corr9 z=1068-1039-20  
+
+
+coil Coil10 material=Nb innerRadius=155 outerRadius=165.2 length=100 material=Nb
+solenoid Corr10 coil=Coil10 current=11.86  color=1,0,0,0.3 
+place Corr10 z=1068-1129-20   
+
+
+
+####################Corrector Coils for 1T Solenoid####################################################################
+
+coil Coil13 material=Nb innerRadius=155 outerRadius=165.2 length=100 material=Nb
+solenoid Corr13 coil=Coil13 current=-1.3  color=1,0,0,0.3 
+place Corr13 z=1068+280.01+50
+
+coil Coil14 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr14 coil=Coil14 current=-1.91  color=1,0,0,0.3 
+place Corr14 z=1068+429.01+20
+
+coil Coil15 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr15 coil=Coil15 current=-1.36  color=1,0,0,0.3 
+place Corr15 z=1068+509.01+20
+
+coil Coil16 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr16 coil=Coil16 current=-0.29  color=1,0,0,0.3 
+place Corr16 z=1068+589.01+20
+
+coil Coil17 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr17 coil=Coil17 current=-0.37  color=1,0,0,0.3 
+place Corr17 z=1068+669.01+20
+
+coil Coil18 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr18 coil=Coil18 current=1.12  color=1,0,0,0.3 
+place Corr18 z=1068+749.01+20
+
+coil Coil19 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr19 coil=Coil19 current=0.32 color=1,0,0,0.3 
+place Corr19 z=1068+829.01+20
+
+coil Coil20 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr20 coil=Coil20 current=3.8 color=1,0,0,0.3 
+place Corr20 z=1068+909.01+20
+
+coil Coil21 material=Nb innerRadius=160 outerRadius=165.1 length=40 material=Nb
+solenoid Corr21 coil=Coil21 current=0 color=1,0,0,0.3 
+place Corr21 z=1068+989.01+20
+
+coil Coil22 material=Nb innerRadius=155 outerRadius=165.2 length=100 material=Nb
+solenoid Corr22 coil=Coil22 current=6.22 color=1,0,0,0.3 
+place Corr22 z=1068+1079.01+20
+
+coil Coil23 material=Nb innerRadius=210 outerRadius=230 length=40 material=Nb
+solenoid Corr23 coil=Coil23 current=-12.7 color=1,0,0,0.3 
+place Corr23 z=1068+1453.4+20
+
+label text="Corrector" 0,230,1068+1453.4+20 
+
+########################################################################################################################
+##Importing the Magnetic field from CST if needed
+
+#fieldmap map filename="fieldmapinput.B" 
+#place map z=1068 
+#box Vis height=1000 width=1000 length=1000 color=1,1,1,0.2 
+#fieldlines center=0,0,0 radius=500 square=1 exit=1 nLines=50 N=50
+#printfield field=Bz layout=zx drow=50 nrow=100 dcol=1 ncol=1 x=0 y=0 z=-2000
+
+########################################################################################################################
+
+
+## Defining analytical electric field expression for a parabolic potential well
+
+fieldexpr axialfieldE radius=30 length=200  Er=0.001*r^2 Ez=0.001*abs(z) #The default Efield value is MegaV/m
+
+place axialfieldE z=1155.8  ## This is the centre of the parabolic potential well from Ruggerro data which is around B1 electrode
+
+printfield field=Ez layout=zx drow=10 nrow=30 dcol=2 ncol=1 x=0 y=0 z=1000
+
+########################################################################################
+
+###Cylinders for Liquid Helium for cooling the electromagnets
+
+
+
+#################Scintillator slabs covering the experiments#################
+
+###SC12#################################################
+#The first is the exact geometry spanning the angle whereas the second is the full circular ring.
+
+cylinder SC12_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=210 finalPhi=330 length=100  maxStep=0.1 color=0,1,0,0.1 
+detector SC12 innerRadius=700 radius=710 length=100 material=POLYPROPYLENE color=0,1,0,0.1 solid=SC12_1 format=ASCII file=CSC12.txt
+place SC12 z=1068-960 
+label text="SC12" 0,-710,1068-960 
+
+
+###SC34#################################################
+cylinder SC34_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=30 finalPhi=150 length=100  color=0,1,0,0.1 
+detector SC34 material=POLYPROPYLENE innerRadius=700 radius=710  length=100  solid=SC34_1 color=0,1,0,0.1 format=ASCII file=CSC34.txt
+place SC34 z=1068-760 
+label text="SC34" 0,710,1068-760 
+
+###SC56#################################################
+cylinder SC56_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=30 finalPhi=150 length=50  color=0,1,0,0.1 
+detector SC56 material=POLYPROPYLENE innerRadius=700 radius=710  length=50  color=0,1,0,0.1 solid=SC56_1 format=ASCII file=SC56.txt
+place SC56 z=1068-450 
+label text="SC56" 0,710,1068-450 
+
+###SC78#################################################
+cylinder SC78_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=210 finalPhi=330 length=50  color=0,1,0,0.1 
+detector SC78 material=POLYPROPYLENE innerRadius=700 radius=710  length=50  color=0,1,0,0.1 solid=SC78_1 format=ASCII file=SC78.txt
+place SC78 z=1068-350 
+label text="SC78" 0,-710,1068-350 
+
+
+###SC910#################################################
+cylinder SC910_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=210 finalPhi=330 length=50  color=0,1,0,0.1 
+detector SC910 material=POLYPROPYLENE innerRadius=700 radius=710 length=50  color=0,1,0,0.1 solid=SC910_1 format=ASCII file=C910.txt
+place SC910 z=1068+390 
+label text="SC910" 0,-710,1068+390 
+
+###SC1112#################################################
+cylinder SC1112_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=30 finalPhi=150 length=50  color=0,1,0,0.1 
+detector SC1112 material=POLYPROPYLENE innerRadius=700 radius=710  length=50 solid=SC1112_1 color=0,1,0,0.1 format=ASCII file=SC1112.txt
+place SC1112 z=1068+460 
+label text="SC1112" 0,710,1068+460 
+
+###SC1314#################################################
+cylinder SC1314_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=210 finalPhi=330 length=50  color=0,1,0,0.1 
+detector SC1314 material=POLYPROPYLENE innerRadius=700 radius=710 length=50 solid=SC1314_1 color=0,1,0,0.1 format=ASCII file=SC1314.txt
+place SC1314 z=1068+590 
+label text="SC1314" 0,-710,1068+590 
+
+###SC1516#################################################
+cylinder SC1516_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=30 finalPhi=150 length=50  color=0,1,0,0.1 
+detector SC1516 material=POLYPROPYLENE innerRadius=700 radius=710  length=50 solid=SC1516_1 color=0,1,0,0.1 format=ASCII file=SC1516.txt
+place SC1516 z=1068+640 
+label text="SC1516" 0,710,1068+640 
+
+###SC1718#################################################
+cylinder SC1718_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=210 finalPhi=330 length=50  color=0,1,0,0.1 
+detector SC1718 material=POLYPROPYLENE innerRadius=700 radius=710  length=50  solid=SC1718_1 color=0,1,0,0.1 format=ASCII file=SC1718.txt
+place SC1718 z=1068+750 
+label text="SC1718" 0,-710,1068+750 
+
+###SC1920#################################################
+cylinder SC1920_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=30 finalPhi=150 length=50  color=0,1,0,0.1 
+detector SC1920 material=POLYPROPYLENE innerRadius=700 radius=710  length=50 solid=SC1920_1 color=0,1,0,0.1 format=ASCII file=SC1920.txt
+place SC1920 z=1068+795 
+label text="SC1920" 0,710,1068+795+5 
+
+###SC2122#################################################
+cylinder SC2122_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=210 finalPhi=330 length=50  color=0,1,0,0.1 
+detector SC2122 material=POLYPROPYLENE innerRadius=700 radius=710 length=50 solid=SC2122_1 color=0,1,0,0.1 format=ASCII file=SC2122.txt
+place SC2122 z=1068+890 
+label text="SC2122" 0,-710,1068+890+5 
+
+###SC2324#################################################
+cylinder SC2324_1 material=POLYPROPYLENE innerRadius=700 outerRadius=710 initialPhi=30 finalPhi=150 length=50  color=0,1,0,0.1 
+detector SC2324 material=POLYPROPYLENE innerRadius=700 radius=710 length=50 solid=SC2324_1 color=0,1,0,0.1 format=ASCII file=SC2324.txt
+place SC2324 z=1068+960 
+label text="SC2324" 0,710,1068+960+5 
+
+
+#Total energy deposited in different components
+totalenergy filename=totalenergy.txt
+
+
+######Output of beamprofile for generating TWISS plot#########################
+#profile file=profile_antiproton.txt particle=anti_proton zloop=0.01:2600:5
+#profile file=profile_electron.txt particle=e- zloop=0.01:2600:5
+#profile file=profile_photon.txt particle=opticalphoton zloop=0.01:2600:5
+
+
+

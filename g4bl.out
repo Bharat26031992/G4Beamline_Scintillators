@@ -1,0 +1,1407 @@
+G4BL_DIR=C:\Program Files\Muons, Inc\G4beamline
+G4ABLADATA=C:\Geant4Data/G4ABLA3.1
+G4LEDATA=C:\Geant4Data/G4EMLOW8.0
+G4ENSDFSTATEDATA=C:\Geant4Data/G4ENSDFSTATE2.3
+G4INCLDATA=C:\Geant4Data/G4INCL1.0
+G4NEUTRONHPDATA=C:\Geant4Data/G4NDL4.6
+G4PARTICLEXSDATA=C:\Geant4Data/G4PARTICLEXS4.0
+G4PIIDATA=C:\Geant4Data/G4PII1.3
+G4LEVELGAMMADATA=C:\Geant4Data/PhotonEvaporation5.7
+G4RADIOACTIVEDATA=C:\Geant4Data/RadioactiveDecay5.6
+G4REALSURFACEDATA=C:\Geant4Data/RealSurface2.2
+G4SAIDXSDATA=C:\Geant4Data/G4SAIDDATA2.0
+G4TENDLDATA=C:\Geant4Data/G4TENDL1.4
+G4LENDDATA=C:\Geant4Data/LEND_GND1.3_ENDF.BVII.1
+G4beamline Process ID 19844
+
+*************************************************************
+ g4beamline version: 3.08                        (Oct  8 2022)
+                      Copyright : Tom Roberts, Muons, Inc.
+                        License : Gnu Public License
+                            WWW : http://g4beamline.muonsinc.com
+**************************************************************
+ Geant4 version Name: geant4-11-00-patch-03 [MT]   (16-September-2022)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+param        viewer        best,1
+geometry                   nPoints=100 printGeometry=0 visual=0
+                           tolerance=0.002
+G4PhysListFactory::GetReferencePhysList <QGSP_BERT>  EMoption= 0
+<<< Geant4 Physics List simulation engine: QGSP_BERT
+
+
+physics      QGSP_BERT     disable= inactivate= deactivate= doStochastics=1
+                           fluct=1 minRangeCut=1 list=0 gammaToMuPair=0
+                           spinTracking=0 synchrotronRadiation=0
+                           synchrotronRadiationMuon=0 maxTime=1e+06
+g4ui                       when=4
+param        KE            0.1
+param        M             938.272
+param        P             13.699066
+param        p             0.013699066
+param        Charge        -1
+param        brel          1.4598758e-05
+param        v             4376.5975
+param        psi           0.45695166
+param        K_Coefficient -0.45695166
+param        Eg_Coeficient -0.0019998935
+param        sigmabeam     2.5
+param        deltaOneStep  0.01
+param        deltaChord    1
+param        histoFile     AEgIS
+param        zTolerance    2
+param        minStep       0.01
+geometry                   nPoints=100 printGeometry=0 visual=0 tolerance=5
+beam    GAUSSIAN particle=anti_proton nEvents=100 firstEvent=-1 lastEvent=2147483647 beamX=0.0 beamY=0.0 beamZ=-5.0 maxR=1000000.0 
+		meanMomentum=13.7 weight=1.000000 
+		sigmaX=2.5 sigmaY=2.5 sigmaZ=0.0 sigmaXp=0.00095 sigmaYp=0.00036 
+		sigmaP=0.0 sigmaT=0.000 meanXp=0.00000 meanYp=0.00000 meanT=0.000 
+reference                  particle=anti_proton beamX=0 beamY=0 beamZ=0
+                           beamT=0 rotation= referenceMomentum=13.7 beamXp=0
+                           beamYp=0 meanMomentum=13.7 meanXp=0 meanYp=0
+                           tuneZ=-3.7e+21 tuneMomentum=-3.7e+21
+                           tolerance=0.001 noEfield=0 noBfield=0 noEloss=0
+                           P=13.7
+material ParyleneN Mixture: 0.86*C+0.14*H
+                density=1.100 temperature=273 pressure=1.0
+material Aluminum Z=13.00 A=26.98
+                density=2.700 temperature=273 pressure=1.0
+virtualdetector ParyleneN_Foil radius=15.5 innerRadius=0 height=31 width=31
+                           length=0.0002 maxStep=100 material=ParyleneN
+                           color=1,1,1 noSingles=0 format=bltrackfile
+                           filename=ParyleneN50keV.txt file=ParyleneN50keV.txt
+                           require= referenceParticle=0 coordinates=Centerline
+                           kill=0
+tubs         Aluminum_Coating innerRadius=0 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=1e-05 maxStep=100
+                           material=Aluminum color=1,0.647,0,1 kill=0
+                           radius=15.5
+place   ParyleneN_Foil copies=1 x=0.0 y=0.0 z=-1.0 
+place   Aluminum_Coating copies=1 x=0.0 y=0.0 z=-1.0 
+tubs         C0            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=13.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C0      copies=1 x=0.0 y=0.0 z=6.8 
+tubs         HV1           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=40 maxStep=100 material=Au
+                           color=0,0.5,0.5 kill=0 radius=15.5
+place   HV1     copies=1 x=0.0 y=0.0 z=43.5 
+tubs         C1            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=26.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C1      copies=1 x=0.0 y=0.0 z=86.8 
+tubs         C2            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=29 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C1      copies=1 x=0.0 y=0.0 z=115.5 
+tubs         C3            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=29 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C3      copies=1 x=0.0 y=0.0 z=145.5 
+tubs         C4            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=29 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C4      copies=1 x=0.0 y=0.0 z=175.5 
+tubs         C5            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=29 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C5      copies=1 x=0.0 y=0.0 z=205.5 
+tubs         C6            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C6      copies=1 x=0.0 y=0.0 z=227.2 
+tubs         C7            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C7      copies=1 x=0.0 y=0.0 z=240.8 
+tubs         C8            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C8      copies=1 x=0.0 y=0.0 z=254.2 
+tubs         C9            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C9      copies=1 x=0.0 y=0.0 z=267.2 
+tubs         C10           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C10     copies=1 x=0.0 y=0.0 z=281.2 
+tubs         C11           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C11     copies=1 x=0.0 y=0.0 z=294.8 
+tubs         C12           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C12     copies=1 x=0.0 y=0.0 z=308.2 
+tubs         C13           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C13     copies=1 x=0.0 y=0.0 z=321.8 
+tubs         C14           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C14     copies=1 x=0.0 y=0.0 z=335.2 
+tubs         C15           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C15     copies=1 x=0.0 y=0.0 z=348.8 
+tubs         C16           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=29 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C16     copies=1 x=0.0 y=0.0 z=370.5 
+tubs         C17           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=29 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C17     copies=1 x=0.0 y=0.0 z=400.5 
+tubs         C18           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=29 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C18     copies=1 x=0.0 y=0.0 z=430.5 
+tubs         C19           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=27.5 maxStep=100 material=Au
+                           color=0.5,0.5,0.5 kill=0 radius=15.5
+place   C19     copies=1 x=0.0 y=0.0 z=459.8 
+tubs         HV2           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=40 maxStep=100 material=Au
+                           color=0,0.5,0.5 kill=0 radius=15.5
+place   HV2     copies=1 x=0.0 y=0.0 z=503.5 
+tubs         P1            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=23 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P1      copies=1 x=0.0 y=0.0 z=545.0 
+tubs         P2            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=29 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P2      copies=1 x=0.0 y=0.0 z=572.0 
+tubs         P3            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P3      copies=1 x=0.0 y=0.0 z=593.8 
+tubs         P4            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P4      copies=1 x=0.0 y=0.0 z=607.2 
+tubs         P5            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P5      copies=1 x=0.0 y=0.0 z=620.8 
+tubs         P6            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P6      copies=1 x=0.0 y=0.0 z=634.2 
+tubs         P7            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P7      copies=1 x=0.0 y=0.0 z=647.8 
+tubs         P8            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P8      copies=1 x=0.0 y=0.0 z=661.2 
+tubs         P9            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P9      copies=1 x=0.0 y=0.0 z=674.8 
+tubs         P10           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P10     copies=1 x=0.0 y=0.0 z=688.2 
+tubs         P11           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P11     copies=1 x=0.0 y=0.0 z=701.8 
+tubs         P12           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12.5 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P12     copies=1 x=0.0 y=0.0 z=715.2 
+tubs         P13           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=29 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P13     copies=1 x=0.0 y=0.0 z=737.0 
+tubs         P14           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=24 maxStep=100 material=Au
+                           color=0,1,0.5 kill=0 radius=15.5
+place   P14     copies=1 x=0.0 y=0.0 z=764.5 
+tubs         HV3           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=40 maxStep=100 material=Au
+                           color=0,0.5,0.5 kill=0 radius=15.5
+place   HV3     copies=1 x=0.0 y=0.0 z=806.5 
+tubs         T1            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=26.5 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   T1      copies=1 x=0.0 y=0.0 z=849.8 
+tubs         T2            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=39 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   T2      copies=1 x=0.0 y=0.0 z=883.5 
+tubs         T3            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=39 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   T3      copies=1 x=0.0 y=0.0 z=923.5 
+tubs         T4            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=39 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   T4      copies=1 x=0.0 y=0.0 z=963.5 
+tubs         T5            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=39 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   T5      copies=1 x=0.0 y=0.0 z=1003.5 
+tubs         T6            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=41 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   T6      copies=1 x=0.0 y=0.0 z=1044.5 
+tubs         B0            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=62 maxStep=100 material=Au
+                           color=1,0,0 kill=0 radius=15.5
+place   B0      copies=1 x=0.0 y=0.0 z=1102.8 
+tubs         B1            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=42 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   B1      copies=1 x=0.0 y=0.0 z=1155.8 
+tubs         B2            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=42 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   B2      copies=1 x=0.0 y=0.0 z=1198.8 
+tubs         B3            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=42 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   B3      copies=1 x=0.0 y=0.0 z=1241.8 
+tubs         B4            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=42 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   B4      copies=1 x=0.0 y=0.0 z=1284.8 
+tubs         B5            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=42 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   B5      copies=1 x=0.0 y=0.0 z=1327.8 
+tubs         B6            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=42 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   B6      copies=1 x=0.0 y=0.0 z=1370.8 
+tubs         B7            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=42 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   B7      copies=1 x=0.0 y=0.0 z=1413.8 
+tubs         B8            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=15 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   B8      copies=1 x=0.0 y=0.0 z=1443.2 
+tubs         B9            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=15 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   B9      copies=1 x=0.0 y=0.0 z=1459.2 
+tubs         B10           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=15 maxStep=100 material=Au
+                           color=1,1,1 kill=0 radius=15.5
+place   B10     copies=1 x=0.0 y=0.0 z=1475.2 
+tubs         HV4           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=15 maxStep=100 material=Au
+                           color=0,0.5,0.5 kill=0 radius=15.5
+place   HV4     copies=1 x=0.0 y=0.0 z=1491.2 
+tubs         HV5           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=15 maxStep=100 material=Au
+                           color=0,0.5,0.5 kill=0 radius=15.5
+place   HV5     copies=1 x=0.0 y=0.0 z=1508.2 
+tubs         HV6           innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=15 maxStep=100 material=Au
+                           color=0,0.5,0.5 kill=0 radius=15.5
+place   HV6     copies=1 x=0.0 y=0.0 z=1525.2 
+tubs         A8            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=15 maxStep=100 material=Au
+                           color=0,0,1 kill=0 radius=15.5
+place   A8      copies=1 x=0.0 y=0.0 z=1541.2 
+tubs         A7            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=15 maxStep=100 material=Au
+                           color=0,0,1 kill=0 radius=15.5
+place   A7      copies=1 x=0.0 y=0.0 z=1557.2 
+tubs         A6            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=15 maxStep=100 material=Au
+                           color=0,0,1 kill=0 radius=15.5
+place   A6      copies=1 x=0.0 y=0.0 z=1573.2 
+tubs         A5            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=15 maxStep=100 material=Au
+                           color=0,0,1 kill=0 radius=15.5
+place   A5      copies=1 x=0.0 y=0.0 z=1589.2 
+tubs         A4            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=7.5 maxStep=100 material=Au
+                           color=0,0,1 kill=0 radius=15.5
+place   A4      copies=1 x=0.0 y=0.0 z=1601.5 
+tubs         A3            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=7.5 maxStep=100 material=Au
+                           color=0,0,1 kill=0 radius=15.5
+place   A3      copies=1 x=0.0 y=0.0 z=1610.5 
+tubs         A2            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=7.5 maxStep=100 material=Au
+                           color=0,0,1 kill=0 radius=15.5
+place   A2      copies=1 x=0.0 y=0.0 z=1618.5 
+tubs         A1            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=7.5 maxStep=100 material=Au
+                           color=0,0,1 kill=0 radius=15.5
+place   A1      copies=1 x=0.0 y=0.0 z=1627.5 
+tubs         A0            innerRadius=15 outerRadius=15.5 initialPhi=0
+                           finalPhi=360 length=12 maxStep=100 material=Au
+                           color=0,0,1 kill=0 radius=15.5
+place   A0      copies=1 x=0.0 y=0.0 z=1642.8 
+label                      text=A0 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+coil    Coil12  innerRadius=125.0 outerRadius=137.0 length=1300.0 material=Nb 
+		tolerance=0.002 nSheets=1000 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil12.dat 
+coilmap Coil12  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil12  read file 'Coil12.dat'  dR=11.0 dZ=11.0
+solenoid     Main1T        coilName=Coil12 current=68 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil12
+place   Main1T  copies=1 x=0.0 y=0.0 z=1798.4 
+label                      text=1T color=1,1,1 size=12 coordinates=global
+                           file= line=0
+coil    Coil11  innerRadius=90.0 outerRadius=120.0 length=1300.0 material=Nb 
+		tolerance=0.002 nSheets=1000 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil11.dat 
+coilmap Coil11  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil11  read file 'Coil11.dat'  dR=4.6 dZ=4.6
+solenoid     Main5T        coilName=Coil11 current=134.4 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil11
+place   Main5T  copies=1 x=0.0 y=0.0 z=339.4 
+label                      text=5T color=1,1,1 size=12 coordinates=global
+                           file= line=0
+coil    Coil1   innerRadius=155.0 outerRadius=165.2 length=100.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil1.dat 
+coilmap Coil1   tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil1   read file 'Coil1.dat'  dR=4.4 dZ=4.4
+solenoid     Corr1         coilName=Coil1 current=11.86 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil1
+place   Corr1   copies=1 x=0.0 y=0.0 z=689.0 
+coil    Coil2   innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil2.dat 
+coilmap Coil2   tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil2   read file 'Coil2.dat'  dR=2.3 dZ=2.3
+solenoid     Corr2         coilName=Coil2 current=5 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil2
+place   Corr2   copies=1 x=0.0 y=0.0 z=569.0 
+coil    Coil3   innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil3.dat 
+coilmap Coil3   tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil3   read file 'Coil3.dat'  dR=2.3 dZ=2.3
+solenoid     Corr3         coilName=Coil3 current=2.94 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil3
+place   Corr3   copies=1 x=0.0 y=0.0 z=489.0 
+coil    Coil4   innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil4.dat 
+coilmap Coil4   tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil4   read file 'Coil4.dat'  dR=2.3 dZ=2.3
+solenoid     Corr4         coilName=Coil4 current=0.63 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil4
+place   Corr4   copies=1 x=0.0 y=0.0 z=409.0 
+coil    Coil5   innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil5.dat 
+coilmap Coil5   tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil5   read file 'Coil5.dat'  dR=2.3 dZ=2.3
+solenoid     Corr5         coilName=Coil5 current=0 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil5
+place   Corr5   copies=1 x=0.0 y=0.0 z=329.0 
+coil    Coil6   innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil6.dat 
+coilmap Coil6   tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil6   read file 'Coil6.dat'  dR=2.3 dZ=2.3
+solenoid     Corr6         coilName=Coil6 current=0 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil6
+place   Corr6   copies=1 x=0.0 y=0.0 z=249.0 
+coil    Coil7   innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil7.dat 
+coilmap Coil7   tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil7   read file 'Coil7.dat'  dR=2.3 dZ=2.3
+solenoid     Corr7         coilName=Coil7 current=0 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil7
+place   Corr7   copies=1 x=0.0 y=0.0 z=169.0 
+coil    Coil8   innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil8.dat 
+coilmap Coil8   tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil8   read file 'Coil8.dat'  dR=2.3 dZ=2.3
+solenoid     Corr8         coilName=Coil8 current=2.2 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil8
+place   Corr8   copies=1 x=0.0 y=0.0 z=89.0 
+coil    Coil9   innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil9.dat 
+coilmap Coil9   tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil9   read file 'Coil9.dat'  dR=2.3 dZ=2.3
+solenoid     Corr9         coilName=Coil9 current=0 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil9
+place   Corr9   copies=1 x=0.0 y=0.0 z=9.0 
+coil    Coil10  innerRadius=155.0 outerRadius=165.2 length=100.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil10.dat 
+coilmap Coil10  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil10  read file 'Coil10.dat'  dR=4.4 dZ=4.4
+solenoid     Corr10        coilName=Coil10 current=11.86 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil10
+place   Corr10  copies=1 x=0.0 y=0.0 z=-81.0 
+coil    Coil13  innerRadius=155.0 outerRadius=165.2 length=100.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil13.dat 
+coilmap Coil13  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil13  read file 'Coil13.dat'  dR=4.4 dZ=4.4
+solenoid     Corr13        coilName=Coil13 current=-1.3 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil13
+place   Corr13  copies=1 x=0.0 y=0.0 z=1398.0 
+coil    Coil14  innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil14.dat 
+coilmap Coil14  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil14  read file 'Coil14.dat'  dR=2.3 dZ=2.3
+solenoid     Corr14        coilName=Coil14 current=-1.91 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil14
+place   Corr14  copies=1 x=0.0 y=0.0 z=1517.0 
+coil    Coil15  innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil15.dat 
+coilmap Coil15  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil15  read file 'Coil15.dat'  dR=2.3 dZ=2.3
+solenoid     Corr15        coilName=Coil15 current=-1.36 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil15
+place   Corr15  copies=1 x=0.0 y=0.0 z=1597.0 
+coil    Coil16  innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil16.dat 
+coilmap Coil16  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil16  read file 'Coil16.dat'  dR=2.3 dZ=2.3
+solenoid     Corr16        coilName=Coil16 current=-0.29 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil16
+place   Corr16  copies=1 x=0.0 y=0.0 z=1677.0 
+coil    Coil17  innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil17.dat 
+coilmap Coil17  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil17  read file 'Coil17.dat'  dR=2.3 dZ=2.3
+solenoid     Corr17        coilName=Coil17 current=-0.37 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil17
+place   Corr17  copies=1 x=0.0 y=0.0 z=1757.0 
+coil    Coil18  innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil18.dat 
+coilmap Coil18  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil18  read file 'Coil18.dat'  dR=2.3 dZ=2.3
+solenoid     Corr18        coilName=Coil18 current=1.12 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil18
+place   Corr18  copies=1 x=0.0 y=0.0 z=1837.0 
+coil    Coil19  innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil19.dat 
+coilmap Coil19  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil19  read file 'Coil19.dat'  dR=2.3 dZ=2.3
+solenoid     Corr19        coilName=Coil19 current=0.32 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil19
+place   Corr19  copies=1 x=0.0 y=0.0 z=1917.0 
+coil    Coil20  innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil20.dat 
+coilmap Coil20  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil20  read file 'Coil20.dat'  dR=2.3 dZ=2.3
+solenoid     Corr20        coilName=Coil20 current=3.8 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil20
+place   Corr20  copies=1 x=0.0 y=0.0 z=1997.0 
+coil    Coil21  innerRadius=160.0 outerRadius=165.1 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil21.dat 
+coilmap Coil21  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil21  read file 'Coil21.dat'  dR=2.3 dZ=2.3
+solenoid     Corr21        coilName=Coil21 current=0 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil21
+place   Corr21  copies=1 x=0.0 y=0.0 z=2077.0 
+coil    Coil22  innerRadius=155.0 outerRadius=165.2 length=100.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil22.dat 
+coilmap Coil22  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil22  read file 'Coil22.dat'  dR=4.4 dZ=4.4
+solenoid     Corr22        coilName=Coil22 current=6.22 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil22
+place   Corr22  copies=1 x=0.0 y=0.0 z=2167.0 
+coil    Coil23  innerRadius=210.0 outerRadius=230.0 length=40.0 material=Nb 
+		tolerance=0.002 nSheets=0 
+		maxR=0.0 maxZ=0.0 dR=0.0 dZ=0.0 filename=Coil23.dat 
+coilmap Coil23  tolerance=0.00200 [fraction of Bz(r=0,z=0)]
+coilmap Coil23  read file 'Coil23.dat'  dR=3.0 dZ=3.0
+solenoid     Corr23        coilName=Coil23 current=-12.7 color=1,0,0,0.3
+                           alternate=0 kill=0 coil=Coil23
+place   Corr23  copies=1 x=0.0 y=0.0 z=2541.4 
+label                      text=Corrector color=1,1,1 size=12
+                           coordinates=global file= line=0
+fieldexpr axialfieldE: Map 121 points  Max Relative Error = 0.0028
+fieldexpr axialfieldE: Map 441 points  Max Relative Error = 0.0007
+fieldexpr    axialfieldE   factorB=1 factorE=1 timeOffset=0 Bx= By= Bz= Br=
+                           Bphi= Ex= Ey= Ez=0.001*abs(z) Er=0.001*r^2 time=
+                           nX=11 nY=11 nZ=21 nR=21 nT=11 tolerance=0.001
+                           length=200 width=0 height=0 radius=30 tmin=0 tmax=0
+place   axialfieldE copies=1 x=0.0 y=0.0 z=1155.8 
+tubs         SC12_1        innerRadius=700 outerRadius=710 initialPhi=210
+                           finalPhi=330 length=100 maxStep=0.1
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC12          radius=710 innerRadius=700 height=1420 width=1420
+                           length=100 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC12_1 noSingles=0
+                           format=ASCII filename=CSC12.txt file=CSC12.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC12    copies=1 x=0.0 y=0.0 z=108.0 
+label                      text=SC12 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+tubs         SC34_1        innerRadius=700 outerRadius=710 initialPhi=30
+                           finalPhi=150 length=100 maxStep=100
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC34          radius=710 innerRadius=700 height=1420 width=1420
+                           length=100 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC34_1 noSingles=0
+                           format=ASCII filename=CSC34.txt file=CSC34.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC34    copies=1 x=0.0 y=0.0 z=308.0 
+label                      text=SC34 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+tubs         SC56_1        innerRadius=700 outerRadius=710 initialPhi=30
+                           finalPhi=150 length=50 maxStep=100
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC56          radius=710 innerRadius=700 height=1420 width=1420
+                           length=50 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC56_1 noSingles=0
+                           format=ASCII filename=SC56.txt file=SC56.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC56    copies=1 x=0.0 y=0.0 z=618.0 
+label                      text=SC56 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+tubs         SC78_1        innerRadius=700 outerRadius=710 initialPhi=210
+                           finalPhi=330 length=50 maxStep=100
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC78          radius=710 innerRadius=700 height=1420 width=1420
+                           length=50 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC78_1 noSingles=0
+                           format=ASCII filename=SC78.txt file=SC78.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC78    copies=1 x=0.0 y=0.0 z=718.0 
+label                      text=SC78 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+tubs         SC910_1       innerRadius=700 outerRadius=710 initialPhi=210
+                           finalPhi=330 length=50 maxStep=100
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC910         radius=710 innerRadius=700 height=1420 width=1420
+                           length=50 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC910_1 noSingles=0
+                           format=ASCII filename=C910.txt file=C910.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC910   copies=1 x=0.0 y=0.0 z=1458.0 
+label                      text=SC910 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+tubs         SC1112_1      innerRadius=700 outerRadius=710 initialPhi=30
+                           finalPhi=150 length=50 maxStep=100
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC1112        radius=710 innerRadius=700 height=1420 width=1420
+                           length=50 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC1112_1 noSingles=0
+                           format=ASCII filename=SC1112.txt file=SC1112.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC1112  copies=1 x=0.0 y=0.0 z=1528.0 
+label                      text=SC1112 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+tubs         SC1314_1      innerRadius=700 outerRadius=710 initialPhi=210
+                           finalPhi=330 length=50 maxStep=100
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC1314        radius=710 innerRadius=700 height=1420 width=1420
+                           length=50 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC1314_1 noSingles=0
+                           format=ASCII filename=SC1314.txt file=SC1314.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC1314  copies=1 x=0.0 y=0.0 z=1658.0 
+label                      text=SC1314 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+tubs         SC1516_1      innerRadius=700 outerRadius=710 initialPhi=30
+                           finalPhi=150 length=50 maxStep=100
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC1516        radius=710 innerRadius=700 height=1420 width=1420
+                           length=50 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC1516_1 noSingles=0
+                           format=ASCII filename=SC1516.txt file=SC1516.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC1516  copies=1 x=0.0 y=0.0 z=1708.0 
+label                      text=SC1516 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+tubs         SC1718_1      innerRadius=700 outerRadius=710 initialPhi=210
+                           finalPhi=330 length=50 maxStep=100
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC1718        radius=710 innerRadius=700 height=1420 width=1420
+                           length=50 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC1718_1 noSingles=0
+                           format=ASCII filename=SC1718.txt file=SC1718.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC1718  copies=1 x=0.0 y=0.0 z=1818.0 
+label                      text=SC1718 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+tubs         SC1920_1      innerRadius=700 outerRadius=710 initialPhi=30
+                           finalPhi=150 length=50 maxStep=100
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC1920        radius=710 innerRadius=700 height=1420 width=1420
+                           length=50 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC1920_1 noSingles=0
+                           format=ASCII filename=SC1920.txt file=SC1920.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC1920  copies=1 x=0.0 y=0.0 z=1863.0 
+label                      text=SC1920 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+tubs         SC2122_1      innerRadius=700 outerRadius=710 initialPhi=210
+                           finalPhi=330 length=50 maxStep=100
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC2122        radius=710 innerRadius=700 height=1420 width=1420
+                           length=50 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC2122_1 noSingles=0
+                           format=ASCII filename=SC2122.txt file=SC2122.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC2122  copies=1 x=0.0 y=0.0 z=1958.0 
+label                      text=SC2122 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+tubs         SC2324_1      innerRadius=700 outerRadius=710 initialPhi=30
+                           finalPhi=150 length=50 maxStep=100
+                           material=POLYPROPYLENE color=0,1,0,0.1 kill=0
+                           radius=710
+detector     SC2324        radius=710 innerRadius=700 height=1420 width=1420
+                           length=50 maxStep=100 material=POLYPROPYLENE
+                           birks=0 color=0,1,0,0.1 solid=SC2324_1 noSingles=0
+                           format=ASCII filename=SC2324.txt file=SC2324.txt
+                           require= referenceParticle=0 coordinates=Local
+                           coord=Local kill=0 perTrack=0
+place   SC2324  copies=1 x=0.0 y=0.0 z=2028.0 
+label                      text=SC2324 color=1,1,1 size=12 coordinates=global
+                           file= line=0
+totalenergy                volumes=* ancestors=0 enclosing=0
+                           filename=totalenergy.txt file=totalenergy.txt
+                           verbose=0
+
+World size (before incrementing by 201.357 mm): 1420.0 H  1420.0 W  5122.8 L
+
+PARAMETERS:
+         Charge=-1
+  Eg_Coeficient=-0.0019998935
+             KE=0.1
+  K_Coefficient=-0.45695166
+              M=938.272
+              P=13.699066
+            Zcl=2053
+           brel=1.4598758e-05
+     deltaChord=1
+deltaIntersection=0.1
+   deltaOneStep=0.01
+         epsMax=0.05
+         epsMin=2.5e-7
+ eventTimeLimit=30
+    fieldVoxels=200,200,200
+      histoFile=AEgIS
+    histoUpdate=0
+        maxStep=100.0
+        minStep=0.01
+              p=0.013699066
+            psi=0.45695166
+      sigmabeam=2.5
+ steppingFormat=N GLOBAL CL KE STEP VOL PROCESS
+steppingVerbose=0
+              v=4376.5975
+         viewer=best,1
+ wallClockLimit=-1
+  worldMaterial=Vacuum
+     zTolerance=2
+Checking overlaps for volume ParyleneN_Foil:0 (G4Tubs) ... OK! 
+BLCMDvirtualdetector::Construct ParyleneN_Foil parent= relZ=-1.0 globZ=-1.0
+Checking overlaps for volume Aluminum_Coating:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct Aluminum_Coating parent= relZ=-1.0 globZ=-1.0
+	zmin=-1.0 zmax=-1.0 kill=0
+Checking overlaps for volume C0:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C0 parent= relZ=6.8 globZ=6.8
+	zmin=0.0 zmax=13.5 kill=0
+Checking overlaps for volume HV1:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct HV1 parent= relZ=43.5 globZ=43.5
+	zmin=23.5 zmax=63.5 kill=0
+Checking overlaps for volume C1:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C1 parent= relZ=86.8 globZ=86.8
+	zmin=73.5 zmax=100.0 kill=0
+Checking overlaps for volume C1:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C1 parent= relZ=115.5 globZ=115.5
+	zmin=102.2 zmax=128.8 kill=0
+Checking overlaps for volume C3:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C3 parent= relZ=145.5 globZ=145.5
+	zmin=131.0 zmax=160.0 kill=0
+Checking overlaps for volume C4:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C4 parent= relZ=175.5 globZ=175.5
+	zmin=161.0 zmax=190.0 kill=0
+Checking overlaps for volume C5:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C5 parent= relZ=205.5 globZ=205.5
+	zmin=191.0 zmax=220.0 kill=0
+Checking overlaps for volume C6:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C6 parent= relZ=227.2 globZ=227.2
+	zmin=221.0 zmax=233.5 kill=0
+Checking overlaps for volume C7:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C7 parent= relZ=240.8 globZ=240.8
+	zmin=234.5 zmax=247.0 kill=0
+Checking overlaps for volume C8:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C8 parent= relZ=254.2 globZ=254.2
+	zmin=248.0 zmax=260.5 kill=0
+Checking overlaps for volume C9:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C9 parent= relZ=267.2 globZ=267.2
+	zmin=261.0 zmax=273.5 kill=0
+Checking overlaps for volume C10:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C10 parent= relZ=281.2 globZ=281.2
+	zmin=275.0 zmax=287.5 kill=0
+Checking overlaps for volume C11:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C11 parent= relZ=294.8 globZ=294.8
+	zmin=288.5 zmax=301.0 kill=0
+Checking overlaps for volume C12:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C12 parent= relZ=308.2 globZ=308.2
+	zmin=302.0 zmax=314.5 kill=0
+Checking overlaps for volume C13:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C13 parent= relZ=321.8 globZ=321.8
+	zmin=315.5 zmax=328.0 kill=0
+Checking overlaps for volume C14:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C14 parent= relZ=335.2 globZ=335.2
+	zmin=329.0 zmax=341.5 kill=0
+Checking overlaps for volume C15:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C15 parent= relZ=348.8 globZ=348.8
+	zmin=342.5 zmax=355.0 kill=0
+Checking overlaps for volume C16:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C16 parent= relZ=370.5 globZ=370.5
+	zmin=356.0 zmax=385.0 kill=0
+Checking overlaps for volume C17:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C17 parent= relZ=400.5 globZ=400.5
+	zmin=386.0 zmax=415.0 kill=0
+Checking overlaps for volume C18:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C18 parent= relZ=430.5 globZ=430.5
+	zmin=416.0 zmax=445.0 kill=0
+Checking overlaps for volume C19:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct C19 parent= relZ=459.8 globZ=459.8
+	zmin=446.0 zmax=473.5 kill=0
+Checking overlaps for volume HV2:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct HV2 parent= relZ=503.5 globZ=503.5
+	zmin=483.5 zmax=523.5 kill=0
+Checking overlaps for volume P1:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P1 parent= relZ=545.0 globZ=545.0
+	zmin=533.5 zmax=556.5 kill=0
+Checking overlaps for volume P2:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P2 parent= relZ=572.0 globZ=572.0
+	zmin=557.5 zmax=586.5 kill=0
+Checking overlaps for volume P3:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P3 parent= relZ=593.8 globZ=593.8
+	zmin=587.5 zmax=600.0 kill=0
+Checking overlaps for volume P4:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P4 parent= relZ=607.2 globZ=607.2
+	zmin=601.0 zmax=613.5 kill=0
+Checking overlaps for volume P5:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P5 parent= relZ=620.8 globZ=620.8
+	zmin=614.5 zmax=627.0 kill=0
+Checking overlaps for volume P6:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P6 parent= relZ=634.2 globZ=634.2
+	zmin=628.0 zmax=640.5 kill=0
+Checking overlaps for volume P7:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P7 parent= relZ=647.8 globZ=647.8
+	zmin=641.5 zmax=654.0 kill=0
+Checking overlaps for volume P8:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P8 parent= relZ=661.2 globZ=661.2
+	zmin=655.0 zmax=667.5 kill=0
+Checking overlaps for volume P9:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P9 parent= relZ=674.8 globZ=674.8
+	zmin=668.5 zmax=681.0 kill=0
+Checking overlaps for volume P10:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P10 parent= relZ=688.2 globZ=688.2
+	zmin=682.0 zmax=694.5 kill=0
+Checking overlaps for volume P11:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P11 parent= relZ=701.8 globZ=701.8
+	zmin=695.5 zmax=708.0 kill=0
+Checking overlaps for volume P12:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P12 parent= relZ=715.2 globZ=715.2
+	zmin=709.0 zmax=721.5 kill=0
+Checking overlaps for volume P13:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P13 parent= relZ=737.0 globZ=737.0
+	zmin=722.5 zmax=751.5 kill=0
+Checking overlaps for volume P14:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct P14 parent= relZ=764.5 globZ=764.5
+	zmin=752.5 zmax=776.5 kill=0
+Checking overlaps for volume HV3:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct HV3 parent= relZ=806.5 globZ=806.5
+	zmin=786.5 zmax=826.5 kill=0
+Checking overlaps for volume T1:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct T1 parent= relZ=849.8 globZ=849.8
+	zmin=836.5 zmax=863.0 kill=0
+Checking overlaps for volume T2:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct T2 parent= relZ=883.5 globZ=883.5
+	zmin=864.0 zmax=903.0 kill=0
+Checking overlaps for volume T3:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct T3 parent= relZ=923.5 globZ=923.5
+	zmin=904.0 zmax=943.0 kill=0
+Checking overlaps for volume T4:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct T4 parent= relZ=963.5 globZ=963.5
+	zmin=944.0 zmax=983.0 kill=0
+Checking overlaps for volume T5:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct T5 parent= relZ=1003.5 globZ=1003.5
+	zmin=984.0 zmax=1023.0 kill=0
+Checking overlaps for volume T6:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct T6 parent= relZ=1044.5 globZ=1044.5
+	zmin=1024.0 zmax=1065.0 kill=0
+Checking overlaps for volume B0:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct B0 parent= relZ=1102.8 globZ=1102.8
+	zmin=1071.8 zmax=1133.8 kill=0
+Checking overlaps for volume B1:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct B1 parent= relZ=1155.8 globZ=1155.8
+	zmin=1134.8 zmax=1176.8 kill=0
+Checking overlaps for volume B2:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct B2 parent= relZ=1198.8 globZ=1198.8
+	zmin=1177.8 zmax=1219.8 kill=0
+Checking overlaps for volume B3:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct B3 parent= relZ=1241.8 globZ=1241.8
+	zmin=1220.8 zmax=1262.8 kill=0
+Checking overlaps for volume B4:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct B4 parent= relZ=1284.8 globZ=1284.8
+	zmin=1263.8 zmax=1305.8 kill=0
+Checking overlaps for volume B5:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct B5 parent= relZ=1327.8 globZ=1327.8
+	zmin=1306.8 zmax=1348.8 kill=0
+Checking overlaps for volume B6:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct B6 parent= relZ=1370.8 globZ=1370.8
+	zmin=1349.8 zmax=1391.8 kill=0
+Checking overlaps for volume B7:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct B7 parent= relZ=1413.8 globZ=1413.8
+	zmin=1392.8 zmax=1434.8 kill=0
+Checking overlaps for volume B8:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct B8 parent= relZ=1443.2 globZ=1443.2
+	zmin=1435.8 zmax=1450.8 kill=0
+Checking overlaps for volume B9:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct B9 parent= relZ=1459.2 globZ=1459.2
+	zmin=1451.8 zmax=1466.8 kill=0
+Checking overlaps for volume B10:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct B10 parent= relZ=1475.2 globZ=1475.2
+	zmin=1467.8 zmax=1482.8 kill=0
+Checking overlaps for volume HV4:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct HV4 parent= relZ=1491.2 globZ=1491.2
+	zmin=1483.8 zmax=1498.8 kill=0
+Checking overlaps for volume HV5:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct HV5 parent= relZ=1508.2 globZ=1508.2
+	zmin=1500.8 zmax=1515.8 kill=0
+Checking overlaps for volume HV6:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct HV6 parent= relZ=1525.2 globZ=1525.2
+	zmin=1517.8 zmax=1532.8 kill=0
+Checking overlaps for volume A8:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct A8 parent= relZ=1541.2 globZ=1541.2
+	zmin=1533.8 zmax=1548.8 kill=0
+Checking overlaps for volume A7:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct A7 parent= relZ=1557.2 globZ=1557.2
+	zmin=1549.8 zmax=1564.8 kill=0
+Checking overlaps for volume A6:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct A6 parent= relZ=1573.2 globZ=1573.2
+	zmin=1565.8 zmax=1580.8 kill=0
+Checking overlaps for volume A5:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct A5 parent= relZ=1589.2 globZ=1589.2
+	zmin=1581.8 zmax=1596.8 kill=0
+Checking overlaps for volume A4:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct A4 parent= relZ=1601.5 globZ=1601.5
+	zmin=1597.8 zmax=1605.2 kill=0
+Checking overlaps for volume A3:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct A3 parent= relZ=1610.5 globZ=1610.5
+	zmin=1606.8 zmax=1614.2 kill=0
+Checking overlaps for volume A2:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct A2 parent= relZ=1618.5 globZ=1618.5
+	zmin=1614.8 zmax=1622.2 kill=0
+Checking overlaps for volume A1:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct A1 parent= relZ=1627.5 globZ=1627.5
+	zmin=1623.8 zmax=1631.2 kill=0
+Checking overlaps for volume A0:0 (G4Tubs) ... OK! 
+BLCMDtubs::Construct A0 parent= relZ=1642.8 globZ=1642.8
+	zmin=1636.8 zmax=1648.8 kill=0
+Checking overlaps for volume Main1T:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Main1T parent= relZ=1798.4 globZ=1798.4
+	global pos=0.0,0.0,1798.4  Checking overlaps for volume Main5T:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Main5T parent= relZ=339.4 globZ=339.4
+	global pos=0.0,0.0,339.4  Checking overlaps for volume Corr1:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr1 parent= relZ=689.0 globZ=689.0
+	global pos=0.0,0.0,689.0  Checking overlaps for volume Corr2:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr2 parent= relZ=569.0 globZ=569.0
+	global pos=0.0,0.0,569.0  Checking overlaps for volume Corr3:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr3 parent= relZ=489.0 globZ=489.0
+	global pos=0.0,0.0,489.0  Checking overlaps for volume Corr4:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr4 parent= relZ=409.0 globZ=409.0
+	global pos=0.0,0.0,409.0  Checking overlaps for volume Corr5:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr5 parent= relZ=329.0 globZ=329.0
+	global pos=0.0,0.0,329.0  Checking overlaps for volume Corr6:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr6 parent= relZ=249.0 globZ=249.0
+	global pos=0.0,0.0,249.0  Checking overlaps for volume Corr7:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr7 parent= relZ=169.0 globZ=169.0
+	global pos=0.0,0.0,169.0  Checking overlaps for volume Corr8:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr8 parent= relZ=89.0 globZ=89.0
+	global pos=0.0,0.0,89.0  Checking overlaps for volume Corr9:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr9 parent= relZ=9.0 globZ=9.0
+	global pos=0.0,0.0,9.0  Checking overlaps for volume Corr10:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr10 parent= relZ=-81.0 globZ=-81.0
+	global pos=0.0,0.0,-81.0  Checking overlaps for volume Corr13:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr13 parent= relZ=1398.0 globZ=1398.0
+	global pos=0.0,0.0,1398.0  Checking overlaps for volume Corr14:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr14 parent= relZ=1517.0 globZ=1517.0
+	global pos=0.0,0.0,1517.0  Checking overlaps for volume Corr15:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr15 parent= relZ=1597.0 globZ=1597.0
+	global pos=0.0,0.0,1597.0  Checking overlaps for volume Corr16:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr16 parent= relZ=1677.0 globZ=1677.0
+	global pos=0.0,0.0,1677.0  Checking overlaps for volume Corr17:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr17 parent= relZ=1757.0 globZ=1757.0
+	global pos=0.0,0.0,1757.0  Checking overlaps for volume Corr18:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr18 parent= relZ=1837.0 globZ=1837.0
+	global pos=0.0,0.0,1837.0  Checking overlaps for volume Corr19:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr19 parent= relZ=1917.0 globZ=1917.0
+	global pos=0.0,0.0,1917.0  Checking overlaps for volume Corr20:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr20 parent= relZ=1997.0 globZ=1997.0
+	global pos=0.0,0.0,1997.0  Checking overlaps for volume Corr21:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr21 parent= relZ=2077.0 globZ=2077.0
+	global pos=0.0,0.0,2077.0  Checking overlaps for volume Corr22:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr22 parent= relZ=2167.0 globZ=2167.0
+	global pos=0.0,0.0,2167.0  Checking overlaps for volume Corr23:0 (G4Tubs) ... OK! 
+BLCMDsolenoid::Construct Corr23 parent= relZ=2541.4 globZ=2541.4
+	global pos=0.0,0.0,2541.4  BLMappedMagnet::Construct axialfieldE parent= relZ=1155.8
+Checking overlaps for volume SC12:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC12 parent= relZ=108.0 globZ=108.0
+Checking overlaps for volume SC34:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC34 parent= relZ=308.0 globZ=308.0
+Checking overlaps for volume SC56:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC56 parent= relZ=618.0 globZ=618.0
+Checking overlaps for volume SC78:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC78 parent= relZ=718.0 globZ=718.0
+Checking overlaps for volume SC910:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC910 parent= relZ=1458.0 globZ=1458.0
+Checking overlaps for volume SC1112:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC1112 parent= relZ=1528.0 globZ=1528.0
+Checking overlaps for volume SC1314:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC1314 parent= relZ=1658.0 globZ=1658.0
+Checking overlaps for volume SC1516:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC1516 parent= relZ=1708.0 globZ=1708.0
+Checking overlaps for volume SC1718:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC1718 parent= relZ=1818.0 globZ=1818.0
+Checking overlaps for volume SC1920:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC1920 parent= relZ=1863.0 globZ=1863.0
+Checking overlaps for volume SC2122:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC2122 parent= relZ=1958.0 globZ=1958.0
+Checking overlaps for volume SC2324:0 (G4Tubs) ... OK! 
+BLCMDdetector::Construct SC2324 parent= relZ=2028.0 globZ=2028.0
+### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
+
+Geometry test nPoints=100 tolerance=5.000 mm:
+Testing geometry for children of group 'World':
+Total geometry errors = 0  0 seconds
+
+
+Physical volumes for totalenergy (* = totaled):
+World *
+    ParyleneN_Foil *
+    Aluminum_Coating *
+    C0 *
+    HV1 *
+    C1 *
+    C1 *
+    C3 *
+    C4 *
+    C5 *
+    C6 *
+    C7 *
+    C8 *
+    C9 *
+    C10 *
+    C11 *
+    C12 *
+    C13 *
+    C14 *
+    C15 *
+    C16 *
+    C17 *
+    C18 *
+    C19 *
+    HV2 *
+    P1 *
+    P2 *
+    P3 *
+    P4 *
+    P5 *
+    P6 *
+    P7 *
+    P8 *
+    P9 *
+    P10 *
+    P11 *
+    P12 *
+    P13 *
+    P14 *
+    HV3 *
+    T1 *
+    T2 *
+    T3 *
+    T4 *
+    T5 *
+    T6 *
+    B0 *
+    B1 *
+    B2 *
+    B3 *
+    B4 *
+    B5 *
+    B6 *
+    B7 *
+    B8 *
+    B9 *
+    B10 *
+    HV4 *
+    HV5 *
+    HV6 *
+    A8 *
+    A7 *
+    A6 *
+    A5 *
+    A4 *
+    A3 *
+    A2 *
+    A1 *
+    A0 *
+    Main1T *
+    Main5T *
+    Corr1 *
+    Corr2 *
+    Corr3 *
+    Corr4 *
+    Corr5 *
+    Corr6 *
+    Corr7 *
+    Corr8 *
+    Corr9 *
+    Corr10 *
+    Corr13 *
+    Corr14 *
+    Corr15 *
+    Corr16 *
+    Corr17 *
+    Corr18 *
+    Corr19 *
+    Corr20 *
+    Corr21 *
+    Corr22 *
+    Corr23 *
+    SC12 *
+    SC34 *
+    SC56 *
+    SC78 *
+    SC910 *
+    SC1112 *
+    SC1314 *
+    SC1516 *
+    SC1718 *
+    SC1920 *
+    SC2122 *
+    SC2324 *
+================= Prepare Tune Particle(s) ===========
+================= Begin Tune Particle(s) =============
+**************************************************************************
+*** G4Exception: EM Field Extends Outside World
+***    severity: Warning
+***   issued by: BLGlobalField
+*** description: May give inaccurate tracking near world boundary.
+***     EventID: -2     TrackID: 1   anti_proton  KE=0.1 MeV
+**************************************************************************
+fieldVoxels: nx=11 ny=11 nz=24, 2904 voxels, 24 fields
+fieldVoxels: max field count is 24 fields, # voxels >5: 2783, >10: 2541, >20: 1089
+**************************************************************************
+*** G4Exception: Check number of field voxels
+***    severity: Warning
+***   issued by: BLGlobalField
+*** description: nVoxels = 2904, max fields/voxel = 24
+***     EventID: -2     TrackID: 1   anti_proton  KE=0.1 MeV
+**************************************************************************
+Run complete  1 Events  0 seconds
+================== Begin Reference Particle(s) ===============
+Run complete  1 Events  0 seconds
+
+Bz (Tesla):  y=0.000 t=0.000 
+               x=0.000
+z=-2000.000      0.0000
+z=-1950.000      0.0000
+z=-1900.000      0.0000
+z=-1850.000      0.0000
+z=-1800.000      0.0000
+z=-1750.000      0.0049
+z=-1700.000      0.0054
+z=-1650.000      0.0058
+z=-1600.000      0.0064
+z=-1550.000      0.0070
+z=-1500.000      0.0077
+z=-1450.000      0.0085
+z=-1400.000      0.0094
+z=-1350.000      0.0104
+z=-1300.000      0.0117
+z=-1250.000      0.0131
+z=-1200.000      0.0148
+z=-1150.000      0.0168
+z=-1100.000      0.0192
+z=-1050.000      0.0222
+z=-1000.000      0.0258
+z=-950.000      0.0303
+z=-900.000      0.0360
+z=-850.000      0.0433
+z=-800.000      0.0529
+z=-750.000      0.0658
+z=-700.000      0.0838
+z=-650.000      0.1096
+z=-600.000      0.1493
+z=-550.000      0.2109
+z=-500.000      0.3155
+z=-450.000      0.5074
+z=-400.000      0.8874
+z=-350.000      1.6397
+z=-300.000      2.7930
+z=-250.000      3.8122
+z=-200.000      4.3891
+z=-150.000      4.6817
+z=-100.000      4.8358
+z=-50.000       4.9166
+z=0.000         4.9567
+z=50.000        4.9774
+z=100.000       4.9902
+z=150.000       4.9989
+z=200.000       5.0053
+z=250.000       5.0099
+z=300.000       5.0132
+z=350.000       5.0156
+z=400.000       5.0171
+z=450.000       5.0179
+z=500.000       5.0179
+z=550.000       5.0166
+z=600.000       5.0125
+z=650.000       4.9998
+z=700.000       4.9676
+z=750.000       4.9044
+z=800.000       4.7964
+z=850.000       4.6062
+z=900.000       4.2373
+z=950.000       3.5089
+z=1000.000      2.4004
+z=1050.000      1.4616
+z=1100.000      1.0229
+z=1150.000      0.9240
+z=1200.000      0.9582
+z=1250.000      1.0009
+z=1300.000      1.0230
+z=1350.000      1.0310
+z=1400.000      1.0327
+z=1450.000      1.0324
+z=1500.000      1.0315
+z=1550.000      1.0304
+z=1600.000      1.0292
+z=1650.000      1.0281
+z=1700.000      1.0270
+z=1750.000      1.0260
+z=1800.000      1.0249
+z=1850.000      1.0238
+z=1900.000      1.0226
+z=1950.000      1.0215
+z=2000.000      1.0202
+z=2050.000      1.0185
+z=2100.000      1.0154
+z=2150.000      1.0071
+z=2200.000      0.9883
+z=2250.000      0.9552
+z=2300.000      0.9028
+z=2350.000      0.8183
+z=2400.000      0.6801
+z=2450.000      0.4843
+z=2500.000      0.2974
+z=2550.000      0.1691
+z=2600.000      0.0978
+z=2650.000      0.0609
+z=2700.000      0.0413
+z=2750.000      0.0302
+z=2800.000      0.0231
+z=2850.000      0.0184
+z=2900.000      0.0000
+z=2950.000      0.0000
+
+
+Ez (MV/meter):  y=0.000 t=0.000 
+               x=0.000
+z=1000.000      0.0000
+z=1010.000      0.0000
+z=1020.000      0.0000
+z=1030.000      0.0000
+z=1040.000      0.0000
+z=1050.000      0.0000
+z=1060.000      0.0958
+z=1070.000      0.0858
+z=1080.000      0.0758
+z=1090.000      0.0658
+z=1100.000      0.0558
+z=1110.000      0.0458
+z=1120.000      0.0358
+z=1130.000      0.0258
+z=1140.000      0.0158
+z=1150.000      0.0058
+z=1160.000      0.0042
+z=1170.000      0.0142
+z=1180.000      0.0242
+z=1190.000      0.0342
+z=1200.000      0.0442
+z=1210.000      0.0542
+z=1220.000      0.0642
+z=1230.000      0.0742
+z=1240.000      0.0842
+z=1250.000      0.0942
+z=1260.000      0.0000
+z=1270.000      0.0000
+z=1280.000      0.0000
+z=1290.000      0.0000
+
+================== Prepare Visualization ==================
+Stochastic processes are enabled.
+Available UI session types: [ Qt, Win32, csh ]
+Visualization Manager instantiating with verbosity "warnings (3)"...
+Visualization Manager initialising...
+Registering graphics systems...
+
+You have successfully registered the following graphics systems.
+Registered graphics systems are:
+  ASCIITree (ATree)
+  DAWNFILE (DAWNFILE)
+  G4HepRepFile (HepRepFile)
+  RayTracer (RayTracer)
+  VRML2FILE (VRML2FILE)
+  gMocrenFile (gMocrenFile)
+  OpenGLImmediateQt (OGLIQt, OGLI)
+  OpenGLStoredQt (OGLSQt, OGL, OGLS)
+  OpenGLImmediateWin32 (OGLIWin32, OGLIQt_FALLBACK)
+  OpenGLStoredWin32 (OGLSWin32, OGLSQt_FALLBACK)
+
+Registering model factories...
+
+You have successfully registered the following model factories.
+Registered model factories:
+  generic
+  drawByAttribute
+  drawByCharge
+  drawByOriginVolume
+  drawByParticleID
+  drawByEncounteredVolume
+
+Registered models:
+  None
+
+Registered filter factories:
+  attributeFilter
+  chargeFilter
+  originVolumeFilter
+  particleFilter
+  encounteredVolumeFilter
+
+Registered filters:
+  None
+
+You have successfully registered the following user vis actions.
+Run Duration User Vis Actions: none
+End of Event User Vis Actions: none
+End of Run User Vis Actions: none
+
+Some /vis commands (optionally) take a string to specify colour.
+"/vis/list" to see available colours.
+
+Selected visualization viewer: Qt
+BLVisManager init: /vis/open OGLSQt
+BLVisManager init: /vis/viewer/set/auxiliaryEdge true
+BLVisManager init: /vis/viewer/set/style surface
+BLVisManager init: /vis/viewer/set/viewpointThetaPhi 0 0 deg
+BLVisManager init: /vis/drawVolume
+BLVisManager init: /tracking/storeTrajectory 1
+BLVisManager init: /vis/scene/add/trajectories
+/tracking/storeTrajectory 1
+Attributes available for modeling and filtering with
+  "/vis/modeling/trajectories/create/drawByAttribute" and
+  "/vis/filtering/trajectories/create/attributeFilter" commands:
+G4TrajectoriesModel:
+  Event ID (EventID): G4int
+  Run ID (RunID): G4int
+G4Trajectory:
+  Charge (Ch): unit: e+ (G4double)
+  Track ID (ID): G4int
+  Initial kinetic energy (IKE): G4BestUnit (G4double)
+  Initial momentum magnitude (IMag): G4BestUnit (G4double)
+  Initial momentum (IMom): G4BestUnit (G4ThreeVector)
+  No. of points (NTP): G4int
+  PDG Encoding (PDG): G4int
+  Parent ID (PID): G4int
+  Particle Name (PN): G4String
+G4TrajectoryPoint:
+  Position (Pos): G4BestUnit (G4ThreeVector)
+WARNING: Trajectory storing has been requested.  This action may be
+  reversed with "/tracking/storeTrajectory 0".
+BLVisManager init: /vis/scene/endOfEventAction accumulate -1
+WARNING: The vis manager will keep an unlimited number of events.
+  This may use a lot of memory.
+  It may be changed with, e.g., "/vis/scene/endOfEventAction accumulate 10".
+BLVisManager init: /vis/viewer/set/hiddenMarker true
+
+
+Geant4 User Interface (null)
+    /vis/viewer/addCutawayPlane
+WARNING: No extent set for user vis action "DrawMarkers".
+WARNING: User Vis Action "DrawMarkers" extent is null.
+ Changing export format to "jpg"
+G4VisManager: Using G4TrajectoryDrawByCharge as fallback trajectory model.
+See commands in /vis/modeling/trajectories/ for other options.
+10 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+10 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+10 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+10 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+10 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+10 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+
+Graphics systems deleted.
+Visualization Manager deleting...
+totalenergy: wrote 'totalenergy.txt'
+
+Exceptions: 0 Fatal, 0 Events Aborted, 0 Stuck Tracks (stopped), 2 Warnings
+      1 times: Check number of field voxels
+      1 times: EM Field Extends Outside World
+g4beamline: simulation complete
