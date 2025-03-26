@@ -1,0 +1,2 @@
+*.txt filter=lfs diff=lfs merge=lfs -text
+ffmpeg-master-latest-win64-gpl-shared/bin/avcodec-61.dll filter=lfs diff=lfs merge=lfs -text

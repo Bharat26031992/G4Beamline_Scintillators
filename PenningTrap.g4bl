@@ -1,7 +1,7 @@
 # Physics configuration for the simulation
 physics QGSP_BERT
 
-g4ui when=4 "/vis/viewer/set/style wireframe"
+#g4ui when=4 "/vis/viewer/set/style wireframe"
 
 #g4ui when=4 "/vis/viewer/addCutawayPlane"
 
@@ -37,12 +37,12 @@ reference particle=anti_proton referenceMomentum=$P
 ## Degrader ParyleneN foil at the entrance##############
 ##Definition taken from AEgIS 2021 report at https://cds.cern.ch/record/2799304/files/SPSC-SR-303.pdf
 
-material ParyleneN C,0.857 H,0.143 density=1.1 
-material Aluminum Z=13 A=26.982 density=2.7 
-virtualdetector ParyleneN_Foil material=ParyleneN innerRadius=0 radius=15.5 length=0.0002 color=1,1,1 format=ASCII file=ParyleneN50keV.txt
-cylinder Aluminum_Coating material=Aluminum innerRadius=0 outerRadius=15.5 length=0.00001 color=1,0.647,0,1
-place ParyleneN_Foil z=-1
-place Aluminum_Coating z=-1.00021
+#material ParyleneN C,0.857 H,0.143 density=1.1 
+#material Aluminum Z=13 A=26.982 density=2.7 
+#virtualdetector ParyleneN_Foil material=ParyleneN innerRadius=0 radius=15.5 length=0.0002 color=1,1,1 format=ASCII file=ParyleneN50keV.txt
+#cylinder Aluminum_Coating material=Aluminum innerRadius=0 outerRadius=15.5 length=0.00001 color=1,0.647,0,1
+#place ParyleneN_Foil z=-1
+##place Aluminum_Coating z=-1.00021
 
 
 ## Degrader Gold foil at the entrance Optional##############
@@ -409,19 +409,16 @@ label text="Corrector" 0,230,1068+1453.4+20
 #fieldmap map filename="fieldmapinput.B" 
 #place map z=1068 
 #box Vis height=1000 width=1000 length=1000 color=1,1,1,0.2 
-#fieldlines center=0,0,0 radius=500 square=1 exit=1 nLines=50 N=50
+#fieldlines center=0,0,0 radius=50 square=1 exit=1 nLines=50 N=50 #this command displays the magnetic field lines in the trap
 #printfield field=Bz layout=zx drow=50 nrow=100 dcol=1 ncol=1 x=0 y=0 z=-2000
 
 ########################################################################################################################
 
-
-## Defining analytical electric field expression for a parabolic potential well
-
-fieldexpr axialfieldE radius=30 length=200  Er=0.001*r^2 Ez=0.001*abs(z) #The default Efield value is MegaV/m
-
-place axialfieldE z=1155.8  ## This is the centre of the parabolic potential well from Ruggerro data which is around B1 electrode
-
-printfield field=Ez layout=zx drow=10 nrow=30 dcol=2 ncol=1 x=0 y=0 z=1000
+## Importing electric field from CST after converting by the Efield.m script
+fieldmap map filename="electric_field.B" 
+place map z=0
+fieldlines radius=100 nLines=100 N=100 dl=2 Efield=1 color=1,1,1
+printfield field=Ez layout=zx drow=50 nrow=50 dcol=2 ncol=1 X0=-1.410000e+02 Y0=-1.410000e+02 Z0=-1.379010e+03 nX=100 nY=100 nZ=100 dX=2.767677e+00 dY=2.767677e+00 dZ=2.786869e+01
 
 ########################################################################################
 
