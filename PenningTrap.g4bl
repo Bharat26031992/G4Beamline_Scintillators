@@ -416,9 +416,9 @@ label text="Corrector" 0,230,1068+1453.4+20
 
 ## Importing electric field from CST after converting by the Efield.m script
 fieldmap map filename="electric_field.B" 
-place map z=0
+place map z=1000
 fieldlines radius=100 nLines=100 N=100 dl=2 Efield=1 color=1,1,1
-printfield field=Ez layout=zx drow=50 nrow=50 dcol=2 ncol=1 X0=-1.410000e+02 Y0=-1.410000e+02 Z0=-1.379010e+03 nX=100 nY=100 nZ=100 dX=2.767677e+00 dY=2.767677e+00 dZ=2.786869e+01
+printfield field=Ez layout=zx drow=50 nrow=50 dcol=2 ncol=1 X0=0 Y0=0 Z0=0 
 
 ########################################################################################
 

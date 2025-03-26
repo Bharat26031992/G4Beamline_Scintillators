@@ -1,3 +1,3 @@
-# g4beamline profile
-#Z N meanX sigmaX meanY sigmaY emitX emitY emitTrans betaX betaY betaTrans alphaX alphaY alphaTrans meanP
-#mm - mm mm mm mm mm-rad mm-rad mm-rad mm mm mm - - - MeV/c
+version https://git-lfs.github.com/spec/v1
+oid sha256:02e9baff0c69f1e48d34fd56abb2ad8a374c802a87007d7b6597ae217ead131e
+size 190

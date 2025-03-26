@@ -1,2 +1,3 @@
-# SC1516
-#x y z Px Py Pz t PDGid EventID TrackID ParentID Weight Edep VisibleEdep Ntracks
+version https://git-lfs.github.com/spec/v1
+oid sha256:2eeee776dd7e1b652b51f7a7662bfb15f874ec690f2e8aa2b85855e2edf1e0ed
+size 92
