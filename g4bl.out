@@ -12,7 +12,7 @@ G4REALSURFACEDATA=C:\Geant4Data/RealSurface2.2
 G4SAIDXSDATA=C:\Geant4Data/G4SAIDDATA2.0
 G4TENDLDATA=C:\Geant4Data/G4TENDL1.4
 G4LENDDATA=C:\Geant4Data/LEND_GND1.3_ENDF.BVII.1
-G4beamline Process ID 22616
+G4beamline Process ID 5772
 
 *************************************************************
  g4beamline version: 3.08                        (Oct  8 2022)
@@ -1370,6 +1370,23 @@ BLVisManager init: /vis/viewer/set/hiddenMarker true
 WARNING: No extent set for user vis action "DrawMarkers".
 WARNING: User Vis Action "DrawMarkers" extent is null.
  Changing export format to "jpg"
+G4VisManager: Using G4TrajectoryDrawByCharge as fallback trajectory model.
+See commands in /vis/modeling/trajectories/ for other options.
+10 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+10 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+10 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+10 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+10 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
 
 Graphics systems deleted.
 Visualization Manager deleting...
