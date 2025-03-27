@@ -12,7 +12,7 @@ G4REALSURFACEDATA=C:\Geant4Data/RealSurface2.2
 G4SAIDXSDATA=C:\Geant4Data/G4SAIDDATA2.0
 G4TENDLDATA=C:\Geant4Data/G4TENDL1.4
 G4LENDDATA=C:\Geant4Data/LEND_GND1.3_ENDF.BVII.1
-G4beamline Process ID 10800
+G4beamline Process ID 31280
 
 *************************************************************
  g4beamline version: 3.08                        (Oct  8 2022)
@@ -28,7 +28,6 @@ G4beamline Process ID 10800
                              WWW : http://geant4.org/
 **************************************************************
 
-*** g4beamline: invalid arg 'SteppingVerbose' ignored
 param        viewer        best,1
 geometry                   nPoints=100 printGeometry=0 visual=0
                            tolerance=0.002
@@ -40,6 +39,7 @@ physics      QGSP_BERT     disable= inactivate= deactivate= doStochastics=1
                            fluct=1 minRangeCut=1 list=0 gammaToMuPair=0
                            spinTracking=0 synchrotronRadiation=0
                            synchrotronRadiationMuon=0 maxTime=1e+06
+g4ui                       when=4
 param        KE            0.1
 param        M             938.272
 param        P             13.699066
@@ -526,8 +526,8 @@ label                      text=Corrector color=1,1,1 size=12
 BLFieldMap: reading file 'electric_field.B'
 fieldmap     Emap          filename=electric_field.B file=electric_field.B
                            current=1 gradient=1 timeOffset=0
-place   Emap    copies=1 x=0.0 y=0.0 z=1068.0 
-fieldlines                 t=0 center=0,0,0 radius=30 nLines=50 dl=2
+place   Emap    copies=1 x=0.0 y=0.0 z=20.0 
+fieldlines                 t=0 center=0,0,5 radius=50 nLines=10 dl=1
                            color=1,1,1 minField=0.001 maxPoints=10000
                            subdivide=10 N=10 exit=0 square=0 Efield=1
                            forever=1
@@ -967,7 +967,7 @@ BLCMDsolenoid::Construct Corr21 parent= relZ=2077.0 globZ=2077.0
 BLCMDsolenoid::Construct Corr22 parent= relZ=2167.0 globZ=2167.0
 	global pos=0.0,0.0,2167.0  Checking overlaps for volume Corr23:0 (G4Tubs) ... OK! 
 BLCMDsolenoid::Construct Corr23 parent= relZ=2541.4 globZ=2541.4
-	global pos=0.0,0.0,2541.4  BLMappedMagnet::Construct Emap parent= relZ=1068.0
+	global pos=0.0,0.0,2541.4  BLMappedMagnet::Construct Emap parent= relZ=20.0
 Checking overlaps for volume SC12:0 (G4Tubs) ... OK! 
 BLCMDdetector::Construct SC12 parent= relZ=108.0 globZ=108.0
 Checking overlaps for volume SC34:0 (G4Tubs) ... OK! 
@@ -1135,12 +1135,12 @@ z=25.000        0.0000
 z=30.000        0.0000
 z=35.000        0.0000
 z=40.000        0.0000
-z=45.000      430.5695
-z=50.000     1699.7201
-z=55.000     3379.7541
-z=60.000     4483.7050
-z=65.000     2720.4375
-z=70.000       63.7941
+z=45.000        0.0000
+z=50.000        0.0000
+z=55.000        0.0000
+z=60.000        0.0000
+z=65.000        0.0000
+z=70.000        0.0000
 z=75.000        0.0000
 z=80.000        0.0000
 z=85.000        0.0000
@@ -1149,83 +1149,83 @@ z=95.000        0.0000
 z=100.000       0.0000
 z=105.000       0.0000
 z=110.000       0.0000
-z=115.000       0.7870
-z=120.000      11.0204
-z=125.000      38.4628
-z=130.000      87.8744
-z=135.000     194.1617
-z=140.000     412.7902
-z=145.000     771.6329
-z=150.000    1055.9105
-z=155.000     666.6071
-z=160.000      17.0809
-z=165.000       0.0000
-z=170.000       0.0000
-z=175.000       0.0000
-z=180.000       0.0000
-z=185.000       0.0000
-z=190.000       0.0000
-z=195.000       0.0000
-z=200.000       0.0000
-z=205.000       0.4543
-z=210.000       3.0967
-z=215.000       5.9784
-z=220.000       4.4554
-z=225.000       2.4782
-z=230.000       2.3686
-z=235.000       1.2691
-z=240.000       1.2352
-z=245.000       1.7385
-z=250.000       0.8242
-z=255.000       1.5909
-z=260.000       1.6003
-z=265.000       0.9264
-z=270.000       2.0679
-z=275.000       1.3929
-z=280.000       1.3707
-z=285.000       2.3724
-z=290.000       1.2250
-z=295.000       2.0692
-z=300.000       2.4048
-z=305.000       1.3166
-z=310.000       2.8234
-z=315.000       2.1865
-z=320.000       1.8134
-z=325.000       3.3797
-z=330.000       1.8381
-z=335.000       2.2773
-z=340.000       2.5721
-z=345.000       0.0000
-z=350.000       0.0000
-z=355.000       0.0000
-z=360.000       0.0000
-z=365.000       5.1096
-z=370.000      16.4828
-z=375.000      13.8583
-z=380.000       0.9463
-z=385.000       0.0000
-z=390.000       0.0000
-z=395.000      45.1508
-z=400.000     171.9930
-z=405.000     258.4514
-z=410.000     177.1138
-z=415.000      36.0554
-z=420.000       0.0000
-z=425.000      47.9919
-z=430.000     332.8890
-z=435.000    1040.2932
-z=440.000    2437.1819
-z=445.000    5490.5682
-z=450.000   12343.2636
-z=455.000   27226.2535
-z=460.000   56608.2764
-z=465.000   101963.3560
-z=470.000   132816.7267
-z=475.000   81800.8728
-z=480.000    3859.1764
-z=485.000       0.0000
-z=490.000       0.0000
-z=495.000    1990.6007
+z=115.000       6.6443
+z=120.000     287.9858
+z=125.000     559.2595
+z=130.000     660.6366
+z=135.000     523.0901
+z=140.000     367.0155
+z=145.000     356.5023
+z=150.000     570.1938
+z=155.000    1152.3409
+z=160.000    2372.9911
+z=165.000    4379.5118
+z=170.000    6218.4315
+z=175.000    5899.8275
+z=180.000    3891.8438
+z=185.000    2215.8151
+z=190.000    1511.3834
+z=195.000    1745.8719
+z=200.000    3078.0034
+z=205.000    5930.3126
+z=210.000    9979.2891
+z=215.000   12157.9170
+z=220.000    9773.0198
+z=225.000    5837.1329
+z=230.000    3292.4452
+z=235.000    2478.8883
+z=240.000    3256.2332
+z=245.000    5969.3646
+z=250.000   11070.1447
+z=255.000   16692.7280
+z=260.000   17199.6460
+z=265.000   11972.7831
+z=270.000    6723.4268
+z=275.000    3970.1869
+z=280.000    3564.0531
+z=285.000    5440.8197
+z=290.000   10241.6716
+z=295.000   17875.1259
+z=300.000   23504.1008
+z=305.000   20446.6534
+z=310.000   12698.2069
+z=315.000    6970.4452
+z=320.000    4579.1135
+z=325.000    5067.2998
+z=330.000    8689.9414
+z=335.000   16256.1550
+z=340.000   25907.6385
+z=345.000   29015.7833
+z=350.000   21560.1406
+z=355.000   12238.7733
+z=360.000    6587.5268
+z=365.000    4565.4607
+z=370.000    5481.7204
+z=375.000    9601.6111
+z=380.000   17231.3194
+z=385.000   25045.8069
+z=390.000   26292.4805
+z=395.000   23237.8960
+z=400.000   22057.2224
+z=405.000   21001.0071
+z=410.000   19426.5251
+z=415.000   20225.6546
+z=420.000   21017.0650
+z=425.000   19983.9382
+z=430.000   20654.4914
+z=435.000   21982.4944
+z=440.000   21045.2042
+z=445.000   21328.0182
+z=450.000   23406.5876
+z=455.000   22892.9691
+z=460.000   21896.8678
+z=465.000   23892.1013
+z=470.000   24945.9248
+z=475.000   23697.4659
+z=480.000   25073.9117
+z=485.000   28087.5492
+z=490.000   29760.8013
+z=495.000   33849.9832
 
 ================== Prepare Visualization ==================
 Stochastic processes are enabled.
@@ -1315,28 +1315,108 @@ WARNING: The vis manager will keep an unlimited number of events.
 BLVisManager init: /vis/viewer/set/hiddenMarker true
 
 
-fieldlines: trying for ~ 50 field lines... got 38
-fieldlines: generating 38 field lines... done.
+Geant4 User Interface (null)
+    /vis/viewer/set/style wireframe
+
+fieldlines: trying for ~ 10 field lines... got 17
+fieldlines: generating 17 field lines... done.
 
 WARNING: No extent set for user vis action "DrawMarkers".
 WARNING: User Vis Action "DrawMarkers" extent is null.
  Changing export format to "jpg"
 G4VisManager: Using G4TrajectoryDrawByCharge as fallback trajectory model.
 See commands in /vis/modeling/trajectories/ for other options.
+1 event has been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+1 event has been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
+1 event has been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
 **************************************************************************
 *** G4Exception: Stuck Track -- Killed
 ***    severity: Warning
 ***   issued by: BLManager Stepping Action
 *** description: 100 steps in a row, each less than 0.1 micron and 0.1 ps
-***     EventID: 1     TrackID: 1737   e-  KE=3.018e-05 MeV
+***     EventID: 4     TrackID: 8375   e-  KE=0.000125 MeV
 **************************************************************************
 **************************************************************************
 *** G4Exception: Stuck Track -- Killed
 ***    severity: Warning
 ***   issued by: BLManager Stepping Action
 *** description: 100 steps in a row, each less than 0.1 micron and 0.1 ps
-***     EventID: 1     TrackID: 1739   e-  KE=3.018e-05 MeV
+***     EventID: 4     TrackID: 8376   e-  KE=0.000125 MeV
 **************************************************************************
+**************************************************************************
+*** G4Exception: Stuck Track -- Killed
+***    severity: Warning
+***   issued by: BLManager Stepping Action
+*** description: 100 steps in a row, each less than 0.1 micron and 0.1 ps
+***     EventID: 4     TrackID: 8379   e-  KE=0.000125 MeV
+**************************************************************************
+**************************************************************************
+*** G4Exception: Stuck Track -- Killed
+***    severity: Warning
+***   issued by: BLManager Stepping Action
+*** description: 100 steps in a row, each less than 0.1 micron and 0.1 ps
+***     EventID: 4     TrackID: 8380   e-  KE=0.000125 MeV
+**************************************************************************
+**************************************************************************
+*** G4Exception: Stuck Track -- Killed
+***    severity: Warning
+***   issued by: BLManager Stepping Action
+*** description: 100 steps in a row, each less than 0.1 micron and 0.1 ps
+***     EventID: 4     TrackID: 8381   e-  KE=0.000125 MeV
+**************************************************************************
+**************************************************************************
+*** G4Exception: Stuck Track -- Killed
+***    severity: Warning
+***   issued by: BLManager Stepping Action
+*** description: 100 steps in a row, each less than 0.1 micron and 0.1 ps
+***     EventID: 4     TrackID: 8383   e-  KE=0.000125 MeV
+**************************************************************************
+**************************************************************************
+*** G4Exception: Stuck Track -- Killed
+***    severity: Warning
+***   issued by: BLManager Stepping Action
+*** description: 100 steps in a row, each less than 0.1 micron and 0.1 ps
+***     EventID: 4     TrackID: 8384   e-  KE=0.000125 MeV
+**************************************************************************
+**************************************************************************
+*** G4Exception: Stuck Track -- Killed
+***    severity: Warning
+***   issued by: BLManager Stepping Action
+*** description: 100 steps in a row, each less than 0.1 micron and 0.1 ps
+***     EventID: 4     TrackID: 8385   e-  KE=0.000125 MeV
+**************************************************************************
+**************************************************************************
+*** G4Exception: Stuck Track -- Killed
+***    severity: Warning
+***   issued by: BLManager Stepping Action
+*** description: 100 steps in a row, each less than 0.1 micron and 0.1 ps
+***     EventID: 4     TrackID: 8386   e-  KE=0.000125 MeV
+**************************************************************************
+**************************************************************************
+*** G4Exception: Stuck Track -- Killed
+***    severity: Warning
+***   issued by: BLManager Stepping Action
+*** description: 100 steps in a row, each less than 0.1 micron and 0.1 ps
+***     EventID: 4     TrackID: 8387   e-  KE=0.000125 MeV
+***    printing: every 10-th occurrence
+**************************************************************************
+**************************************************************************
+*** G4Exception: Stuck Track -- Killed
+***    severity: Warning
+***   issued by: BLManager Stepping Action
+*** description: 100 steps in a row, each less than 0.1 micron and 0.1 ps
+***     EventID: 4     TrackID: 17983   e-  KE=0.0002926 MeV
+***    printing: every 10-th occurrence
+**************************************************************************
+3 events have been kept for refreshing and/or reviewing.
+  "/vis/reviewKeptEvents" to review them one by one.
+  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
 1 event has been kept for refreshing and/or reviewing.
   "/vis/reviewKeptEvents" to review them one by one.
   "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
@@ -1345,8 +1425,8 @@ Graphics systems deleted.
 Visualization Manager deleting...
 totalenergy: wrote 'totalenergy.txt'
 
-Exceptions: 0 Fatal, 0 Events Aborted, 1 Stuck Tracks (stopped), 4 Warnings
+Exceptions: 0 Fatal, 0 Events Aborted, 67 Stuck Tracks (stopped), 30 Warnings
       1 times: Check number of field voxels
       1 times: EM Field Extends Outside World
-      2 times: Stuck Track -- Killed
+     28 times: Stuck Track -- Killed
 g4beamline: simulation complete
