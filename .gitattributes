@@ -1,2 +1,4 @@
 *.txt filter=lfs diff=lfs merge=lfs -text
 ffmpeg-master-latest-win64-gpl-shared/bin/avcodec-61.dll filter=lfs diff=lfs merge=lfs -text
+*.B filter=lfs diff=lfs merge=lfs -text
+zds0132_3mmShield.B filter=lfs diff=lfs merge=lfs -text
