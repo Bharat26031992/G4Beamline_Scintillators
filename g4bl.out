@@ -12,7 +12,7 @@ G4REALSURFACEDATA=C:\Geant4Data/RealSurface2.2
 G4SAIDXSDATA=C:\Geant4Data/G4SAIDDATA2.0
 G4TENDLDATA=C:\Geant4Data/G4TENDL1.4
 G4LENDDATA=C:\Geant4Data/LEND_GND1.3_ENDF.BVII.1
-G4beamline Process ID 5772
+G4beamline Process ID 25888
 
 *************************************************************
  g4beamline version: 3.08                        (Oct  8 2022)
@@ -28,6 +28,7 @@ G4beamline Process ID 5772
                              WWW : http://geant4.org/
 **************************************************************
 
+*** g4beamline: invalid arg 'SteppingVerbose' ignored
 param        viewer        best,1
 geometry                   nPoints=100 printGeometry=0 visual=0
                            tolerance=0.002
@@ -523,13 +524,13 @@ place   Corr23  copies=1 x=0.0 y=0.0 z=2541.4
 label                      text=Corrector color=1,1,1 size=12
                            coordinates=global file= line=0
 BLFieldMap: reading file 'electric_field.B'
-fieldmap     map           filename=electric_field.B file=electric_field.B
+fieldmap     Emap          filename=electric_field.B file=electric_field.B
                            current=1 gradient=1 timeOffset=0
-place   map     copies=1 x=0.0 y=0.0 z=1000.0 
-fieldlines                 t=0 center=0,0,0 radius=100 nLines=100 dl=2
+place   Emap    copies=1 x=0.0 y=0.0 z=1100.0 
+fieldlines                 t=0 center=0,0,0 radius=30 nLines=15 dl=2
                            color=1,1,1 minField=0.001 maxPoints=10000
-                           subdivide=10 N=100 exit=0 square=0 Efield=1
-                           forever=0
+                           subdivide=10 N=50 exit=0 square=0 Efield=1
+                           forever=1
 tubs         SC12_1        innerRadius=700 outerRadius=710 initialPhi=210
                            finalPhi=330 length=100 maxStep=0.1
                            material=POLYPROPYLENE color=0,1,0,0.1 kill=0
@@ -966,7 +967,7 @@ BLCMDsolenoid::Construct Corr21 parent= relZ=2077.0 globZ=2077.0
 BLCMDsolenoid::Construct Corr22 parent= relZ=2167.0 globZ=2167.0
 	global pos=0.0,0.0,2167.0  Checking overlaps for volume Corr23:0 (G4Tubs) ... OK! 
 BLCMDsolenoid::Construct Corr23 parent= relZ=2541.4 globZ=2541.4
-	global pos=0.0,0.0,2541.4  BLMappedMagnet::Construct map parent= relZ=1000.0
+	global pos=0.0,0.0,2541.4  BLMappedMagnet::Construct Emap parent= relZ=1100.0
 Checking overlaps for volume SC12:0 (G4Tubs) ... OK! 
 BLCMDdetector::Construct SC12 parent= relZ=108.0 globZ=108.0
 Checking overlaps for volume SC34:0 (G4Tubs) ... OK! 
@@ -1111,7 +1112,7 @@ World *
 ***     EventID: -2     TrackID: 1   anti_proton  KE=0.1 MeV
 **************************************************************************
 fieldVoxels: nx=11 ny=11 nz=24, 2904 voxels, 24 fields
-fieldVoxels: max field count is 24 fields, # voxels >5: 2783, >10: 2541, >20: 1098
+fieldVoxels: max field count is 24 fields, # voxels >5: 2783, >10: 2541, >20: 1089
 **************************************************************************
 *** G4Exception: Check number of field voxels
 ***    severity: Warning
@@ -1123,162 +1124,108 @@ Run complete  1 Events  0 seconds
 ================== Begin Reference Particle(s) ===============
 Run complete  1 Events  0 seconds
 
-Bz (Tesla):  y=0.000 t=0.000 
-               x=0.000
-z=-2000.000      0.0000
-z=-1950.000      0.0000
-z=-1900.000      0.0000
-z=-1850.000      0.0000
-z=-1800.000      0.0000
-z=-1750.000      0.0049
-z=-1700.000      0.0054
-z=-1650.000      0.0058
-z=-1600.000      0.0064
-z=-1550.000      0.0070
-z=-1500.000      0.0077
-z=-1450.000      0.0085
-z=-1400.000      0.0094
-z=-1350.000      0.0104
-z=-1300.000      0.0117
-z=-1250.000      0.0131
-z=-1200.000      0.0148
-z=-1150.000      0.0168
-z=-1100.000      0.0192
-z=-1050.000      0.0222
-z=-1000.000      0.0258
-z=-950.000      0.0303
-z=-900.000      0.0360
-z=-850.000      0.0433
-z=-800.000      0.0529
-z=-750.000      0.0658
-z=-700.000      0.0838
-z=-650.000      0.1096
-z=-600.000      0.1493
-z=-550.000      0.2109
-z=-500.000      0.3155
-z=-450.000      0.5074
-z=-400.000      0.8874
-z=-350.000      1.6397
-z=-300.000      2.7930
-z=-250.000      3.8122
-z=-200.000      4.3891
-z=-150.000      4.6817
-z=-100.000      4.8358
-z=-50.000       4.9166
-z=0.000         4.9567
-z=50.000        4.9774
-z=100.000       4.9902
-z=150.000       4.9989
-z=200.000       5.0053
-z=250.000       5.0099
-z=300.000       5.0132
-z=350.000       5.0156
-z=400.000       5.0171
-z=450.000       5.0180
-z=500.000       5.0215
-z=550.000       5.0145
-z=600.000       5.0175
-z=650.000       5.0052
-z=700.000       4.9655
-z=750.000       4.9041
-z=800.000       4.7961
-z=850.000       4.6061
-z=900.000       4.2372
-z=950.000       3.5088
-z=1000.000      2.4003
-z=1050.000      1.4615
-z=1100.000      1.0229
-z=1150.000      0.9241
-z=1200.000      0.9582
-z=1250.000      1.0011
-z=1300.000      1.0232
-z=1350.000      1.0310
-z=1400.000      1.0329
-z=1450.000      1.0326
-z=1500.000      1.0318
-z=1550.000      1.0305
-z=1600.000      1.0335
-z=1650.000      1.0283
-z=1700.000      1.0270
-z=1750.000      1.0260
-z=1800.000      1.0249
-z=1850.000      1.0238
-z=1900.000      1.0226
-z=1950.000      1.0215
-z=2000.000      1.0202
-z=2050.000      1.0185
-z=2100.000      1.0154
-z=2150.000      1.0071
-z=2200.000      0.9883
-z=2250.000      0.9552
-z=2300.000      0.9028
-z=2350.000      0.8183
-z=2400.000      0.6801
-z=2450.000      0.4843
-z=2500.000      0.2974
-z=2550.000      0.1691
-z=2600.000      0.0978
-z=2650.000      0.0609
-z=2700.000      0.0413
-z=2750.000      0.0302
-z=2800.000      0.0231
-z=2850.000      0.0184
-z=2900.000      0.0000
-z=2950.000      0.0000
-
-
 Ez (MV/meter):  y=0.000 t=0.000 
                x=0.000
 z=0.000         0.0000
+z=5.000         0.0000
+z=10.000        0.0000
+z=15.000        0.0000
+z=20.000        0.0000
+z=25.000        0.0000
+z=30.000        0.0000
+z=35.000        0.0000
+z=40.000        0.0000
+z=45.000        0.0000
 z=50.000        0.0000
+z=55.000        0.0000
+z=60.000        0.0000
+z=65.000        0.0000
+z=70.000        0.0000
+z=75.000        0.0000
+z=80.000        0.0000
+z=85.000        0.0000
+z=90.000        0.0000
+z=95.000        0.0000
 z=100.000       0.0000
+z=105.000       0.0000
+z=110.000       0.0000
+z=115.000       0.0000
+z=120.000       0.0000
+z=125.000       0.0000
+z=130.000       0.0000
+z=135.000       0.0000
+z=140.000       0.0000
+z=145.000       0.0000
 z=150.000       0.0000
+z=155.000       0.0000
+z=160.000       0.0000
+z=165.000       0.0000
+z=170.000       0.0000
+z=175.000       0.0000
+z=180.000       0.0000
+z=185.000       0.0000
+z=190.000       0.0000
+z=195.000       0.0000
 z=200.000       0.0000
+z=205.000       0.0000
+z=210.000       0.0000
+z=215.000       0.0000
+z=220.000       0.0000
+z=225.000       0.0000
+z=230.000       0.0000
+z=235.000       0.0000
+z=240.000       0.0000
+z=245.000       0.0000
 z=250.000       0.0000
+z=255.000       0.0000
+z=260.000       0.0000
+z=265.000       0.0000
+z=270.000       0.0000
+z=275.000       0.0000
+z=280.000       0.0000
+z=285.000       0.0000
+z=290.000       0.0000
+z=295.000       0.0000
 z=300.000       0.0000
+z=305.000       0.0000
+z=310.000       0.0000
+z=315.000       0.0000
+z=320.000       0.0000
+z=325.000       0.0000
+z=330.000       0.0000
+z=335.000       0.0000
+z=340.000       0.0000
+z=345.000       0.0000
 z=350.000       0.0000
+z=355.000       0.0000
+z=360.000       0.0000
+z=365.000       0.0000
+z=370.000       0.0000
+z=375.000       0.0000
+z=380.000       0.0000
+z=385.000       0.0000
+z=390.000       0.0000
+z=395.000       0.0000
 z=400.000       0.0000
+z=405.000       0.0000
+z=410.000       0.0000
+z=415.000       0.0000
+z=420.000       0.0000
+z=425.000       0.0000
+z=430.000       0.0000
+z=435.000       0.0000
+z=440.000       0.0000
+z=445.000       0.0000
 z=450.000       0.0000
-z=500.000       0.0000
-z=550.000       0.0000
-z=600.000       0.0000
-z=650.000       0.0000
-z=700.000       0.0000
-z=750.000       0.0000
-z=800.000       0.0000
-z=850.000       0.0000
-z=900.000       0.0000
-z=950.000       0.0000
-z=1000.000      0.0000
-z=1050.000      0.0000
-z=1100.000      0.0000
-z=1150.000      0.0000
-z=1200.000      0.0000
-z=1250.000      0.0000
-z=1300.000      0.0000
-z=1350.000      0.0000
-z=1400.000      0.0000
-z=1450.000      0.0000
-z=1500.000      0.0000
-z=1550.000      0.0000
-z=1600.000      0.0000
-z=1650.000      0.0000
-z=1700.000      0.0000
-z=1750.000      0.0000
-z=1800.000      0.0000
-z=1850.000      0.0000
-z=1900.000      0.0000
-z=1950.000      0.0000
-z=2000.000      0.0000
-z=2050.000      0.0000
-z=2100.000      0.0000
-z=2150.000      0.0000
-z=2200.000      0.0000
-z=2250.000      0.0000
-z=2300.000      0.0000
-z=2350.000      0.0000
-z=2400.000      0.0000
-z=2450.000      0.0000
+z=455.000       0.0000
+z=460.000       0.0000
+z=465.000       0.0000
+z=470.000       0.0000
+z=475.000       0.0000
+z=480.000       0.0000
+z=485.000       0.0000
+z=490.000       0.0000
+z=495.000       0.0000
 
 ================== Prepare Visualization ==================
 Stochastic processes are enabled.
@@ -1370,23 +1317,6 @@ BLVisManager init: /vis/viewer/set/hiddenMarker true
 WARNING: No extent set for user vis action "DrawMarkers".
 WARNING: User Vis Action "DrawMarkers" extent is null.
  Changing export format to "jpg"
-G4VisManager: Using G4TrajectoryDrawByCharge as fallback trajectory model.
-See commands in /vis/modeling/trajectories/ for other options.
-10 events have been kept for refreshing and/or reviewing.
-  "/vis/reviewKeptEvents" to review them one by one.
-  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
-10 events have been kept for refreshing and/or reviewing.
-  "/vis/reviewKeptEvents" to review them one by one.
-  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
-10 events have been kept for refreshing and/or reviewing.
-  "/vis/reviewKeptEvents" to review them one by one.
-  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
-10 events have been kept for refreshing and/or reviewing.
-  "/vis/reviewKeptEvents" to review them one by one.
-  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
-10 events have been kept for refreshing and/or reviewing.
-  "/vis/reviewKeptEvents" to review them one by one.
-  "/vis/enable", then "/vis/viewer/flush" or "/vis/viewer/rebuild" to see them accumulated.
 
 Graphics systems deleted.
 Visualization Manager deleting...

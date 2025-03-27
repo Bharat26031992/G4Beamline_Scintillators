@@ -1,8 +1,6 @@
 # Physics configuration for the simulation
 physics QGSP_BERT
-
 #g4ui when=4 "/vis/viewer/set/style wireframe"
-
 #g4ui when=4 "/vis/viewer/addCutawayPlane"
 
 param M=938.272 KE=0.1 # beam in MeV
@@ -305,7 +303,7 @@ label text="5T" 0,120,339.4+1300/2
 #NbTi wire with dimension of 1.25 x 0.8 mm onto a 1.3 m long
 #bobbin of fiberglass reinforced epoxy. For Main5T the current density is 168/1.25*0.8= 168 A/mm2
 
-printfield field=Bz layout=zx drow=50 nrow=100 dcol=1 ncol=1 x=0 y=0 z=-2000
+#printfield field=Bz layout=zx drow=50 nrow=100 dcol=1 ncol=1 x=0 y=0 z=-2000
 
 
 ####################Corrector Coils for 5T Solenoid####################################################################
@@ -404,21 +402,13 @@ place Corr23 z=1068+1453.4+20
 label text="Corrector" 0,230,1068+1453.4+20 
 
 ########################################################################################################################
-##Importing the Magnetic field from CST if needed
-
-#fieldmap map filename="fieldmapinput.B" 
-#place map z=1068 
-#box Vis height=1000 width=1000 length=1000 color=1,1,1,0.2 
-#fieldlines center=0,0,0 radius=50 square=1 exit=1 nLines=50 N=50 #this command displays the magnetic field lines in the trap
-#printfield field=Bz layout=zx drow=50 nrow=100 dcol=1 ncol=1 x=0 y=0 z=-2000
-
-########################################################################################################################
 
 ## Importing electric field from CST after converting by the Efield.m script
-fieldmap map filename="electric_field.B" 
-place map z=1000
-fieldlines radius=100 nLines=100 N=100 dl=2 Efield=1 color=1,1,1
-printfield field=Ez layout=zx drow=50 nrow=50 dcol=2 ncol=1 X0=0 Y0=0 Z0=0 
+fieldmap Emap file=electric_field.B  
+place Emap z=1100
+
+fieldlines center=0,0,0 radius=30 nLines=15 N=50 dl=2 Efield=1 color=1,1,1 forever=1
+printfield type=print field=Ez layout=zx drow=5 nrow=100 dcol=1 
 
 ########################################################################################
 
